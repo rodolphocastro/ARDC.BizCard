@@ -18,5 +18,5 @@
   <string name="label_linkedin">LinkedIn</string>
   <string name="label_website">Website</string>
   <!-- Elementos do Landing -->
-  <string name="landing_message">Bem vindo ao App! Escolha uma opção no menu superior</string>
+  <string name="landing_message">Bem vindo ao App! Escolha uma opção no menu superior!</string>
 </resources>
