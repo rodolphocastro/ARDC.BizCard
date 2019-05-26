@@ -10,6 +10,7 @@ namespace ARDC.BizCard.Core.ViewModels
         public LandingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             NavigateToEditCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<EditCardViewModel>());
+            NavigateToCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ViewCardViewModel>());
         }
 
         public IMvxAsyncCommand NavigateToCardCommand { get; private set; }
