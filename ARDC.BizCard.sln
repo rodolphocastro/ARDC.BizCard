@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.BizCard.Core", "ARDC.BizCard.Core\ARDC.BizCard.Core.csproj", "{E7A24035-2501-4989-80BE-2C8627BE5CFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7A24035-2501-4989-80BE-2C8627BE5CFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A24035-2501-4989-80BE-2C8627BE5CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A24035-2501-4989-80BE-2C8627BE5CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A24035-2501-4989-80BE-2C8627BE5CFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33FC86E2-D726-4E1C-8C3B-8F35DA15AF48}
+	EndGlobalSection
+EndGlobal
