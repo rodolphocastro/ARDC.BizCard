@@ -35,9 +35,17 @@ namespace ARDC.BizCard.Droid
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
-            if (id == Resource.Id.action_settings)
+            switch (id)
             {
-                return true;
+                case (Resource.Id.action_edit_card):
+                    ViewModel.NavigateToEditCommand.Execute();
+                    break;
+                case (Resource.Id.action_view_card):
+                // TODO: navegar à visualização do BizCard
+                case (Resource.Id.action_settings):
+                // TODO: navegar á visualização de Configurações
+                default:
+                    break;
             }
 
             return base.OnOptionsItemSelected(item);
