@@ -41,7 +41,8 @@ namespace ARDC.BizCard.Droid
                     ViewModel.NavigateToEditCommand.Execute();
                     break;
                 case (Resource.Id.action_view_card):
-                // TODO: navegar à visualização do BizCard
+                    ViewModel.NavigateToCardCommand.Execute();
+                    break;
                 case (Resource.Id.action_settings):
                 // TODO: navegar á visualização de Configurações
                 default:
