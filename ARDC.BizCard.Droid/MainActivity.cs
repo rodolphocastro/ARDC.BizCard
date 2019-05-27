@@ -1,16 +1,16 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
+using ARDC.BizCard.Core.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using System;
 
 namespace ARDC.BizCard.Droid
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
+    public class MainActivity : MvxAppCompatActivity<LandingViewModel>
     {
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -45,16 +45,17 @@ namespace ARDC.BizCard.Droid
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            View view = (View) sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            View view = (View)sender;
+            Snackbar.Make(view, "Ainda nâo implementado", Snackbar.LengthLong)
+                .SetAction("Action", (View.IOnClickListener)null).Show();
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-	}
+    }
 }
 
