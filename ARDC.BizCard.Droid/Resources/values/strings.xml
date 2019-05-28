@@ -1,0 +1,22 @@
+<resources>
+  <string name="app_name">Meu Cartão de Visitas</string>
+  <!-- Ações -->
+  <string name="action_edit_card">Configurar Cartão</string>
+  <string name="action_view_card">Exibir Cartão</string>
+  <string name="action_read_card">Ler Cartão (Não Disponível)</string>
+  <string name="action_settings">Configurações</string>
+  <string name="action_share">Compartilhar meu Cartão (Não Disponível)</string>
+  <string name="action_qrcode">Gerar QR Code (Não Disponível)</string>
+  <string name="action_save_changes">Salvar Alterações</string>
+  <!-- Labels do Cartão de Visita -->
+  <string name="label_cartao">Cartão de Visita</string>
+  <string name="label_nome_completo">Nome Completo</string>
+  <string name="label_email">E-Mail</string>
+  <string name="label_telefone_principal">Telefone (Primário)</string>
+  <string name="label_telefone_secundario">Telefone (Secundário)</string>
+  <string name="label_whatsapp">Whatsapp</string>
+  <string name="label_linkedin">LinkedIn</string>
+  <string name="label_website">Website</string>
+  <!-- Elementos do Landing -->
+  <string name="landing_message">Bem vindo ao App! Escolha uma opção no menu superior!</string>
+</resources>
