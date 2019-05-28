@@ -3,12 +3,11 @@ using ARDC.BizCard.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels
 {
-    public class ViewCardViewModel : MvxNavigationViewModel
+    public class ViewCardViewModel : BaseViewModel
     {
         public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
         {
