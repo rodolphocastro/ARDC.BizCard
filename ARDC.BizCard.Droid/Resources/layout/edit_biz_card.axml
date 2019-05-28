@@ -24,7 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_nome_completo"
-                android:inputType="textNoSuggestions"
+                app:MvxBind="Text BizCard.NomeCompleto"
+                android:inputType="textPersonName"
                 android:textSize="16sp"
                 android:singleLine="true" 
                 />
@@ -43,7 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_email"
-                android:inputType="textNoSuggestions"
+                app:MvxBind="Text BizCard.Email"
+                android:inputType="textEmailAddress"
                 android:textSize="16sp"
                 android:singleLine="true" 
                 />
@@ -62,7 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_telefone_principal"
-                android:inputType="textNoSuggestions"
+                app:MvxBind="Text BizCard.TelefonePrincipal"
+                android:inputType="phone"
                 android:textSize="16sp"
                 android:singleLine="true" 
                 />
@@ -83,7 +86,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_telefone_secundario"
-                android:inputType="textNoSuggestions"
+                app:MvxBind="Text BizCard.TelefoneSecundario"
+                android:inputType="phone"
                 android:textSize="16sp"
                 android:singleLine="true" 
                 />
@@ -102,7 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_whatsapp"
-                android:inputType="textNoSuggestions"
+                app:MvxBind="Text BizCard.Whatsapp"
+                android:inputType="phone"
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:id="@+id/editText2" 
@@ -122,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_linkedin"
+                app:MvxBind="Text BizCard.LinkedIn"
                 android:inputType="textNoSuggestions"
                 android:textSize="16sp"
                 android:singleLine="true" 
@@ -141,6 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_website"
+                app:MvxBind="Text BizCard.Website"
                 android:inputType="textNoSuggestions"
                 android:textSize="16sp"
                 android:singleLine="true" 
@@ -155,7 +162,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_gravity="center"
-            android:text="@string/action_save_changes"/>
+            android:text="@string/action_save_changes"
+            app:MvxBind="Click SaveChangesCommand"/>
     
     </LinearLayout>
 </ScrollView>
