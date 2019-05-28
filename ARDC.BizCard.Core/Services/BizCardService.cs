@@ -1,5 +1,8 @@
-﻿using ARDC.BizCard.Core.Models;
+﻿using Akavache;
+using ARDC.BizCard.Core.Models;
 using System;
+using System.Collections.Generic;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,16 +12,25 @@ namespace ARDC.BizCard.Core.Services
     {
         private BizCardContent BizCard { get; set; }
 
-        public Task CreateOrEditCardAsync(BizCardContent bizCard, CancellationToken ct)
+        public async Task CreateOrEditCardAsync(BizCardContent bizCard, CancellationToken ct)
         {
             BizCard = bizCard;
 
-            return Task.CompletedTask;
+            await BlobCache.UserAccount.InsertObject("my_biz_card", BizCard);
         }
 
-        public Task<BizCardContent> GetCardAsync(CancellationToken ct)
+        public async Task<BizCardContent> GetCardAsync(CancellationToken ct)
         {
-            return Task.FromResult(BizCard ?? new BizCardContent());
+            try
+            {
+                BizCard = await BlobCache.UserAccount.GetObject<BizCardContent>("my_biz_card");
+            }
+            catch (KeyNotFoundException)
+            {
+                BizCard = new BizCardContent();
+            }
+
+            return BizCard;
         }
 
         public Task GetQRCodeAsync(BizCardContent bizCard, CancellationToken ct)
