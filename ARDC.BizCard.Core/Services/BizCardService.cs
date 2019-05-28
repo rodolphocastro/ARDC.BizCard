@@ -18,7 +18,7 @@ namespace ARDC.BizCard.Core.Services
 
         public Task<BizCardContent> GetCardAsync(CancellationToken ct)
         {
-            return Task.FromResult(BizCard);
+            return Task.FromResult(BizCard ?? new BizCardContent());
         }
 
         public Task GetQRCodeAsync(BizCardContent bizCard, CancellationToken ct)
