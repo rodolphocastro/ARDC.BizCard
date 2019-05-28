@@ -68,6 +68,78 @@
             
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:labelFor="@+id/bizcard_empresa"
+                android:text="@string/label_empresa"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bizcard_empresa"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="Aleatoria S.A."
+                app:MvxBind="Text BizCard.Empresa"/>
+                
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:labelFor="@+id/bizcard_cargo"
+                android:text="@string/label_cargo"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bizcard_cargo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="Lorem Ipsum"
+                app:MvxBind="Text BizCard.Cargo"/>
+                
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:labelFor="@+id/bizcard_endereco"
+                android:text="@string/label_endereco"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bizcard_endereco"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="R. Teste 123, Testera, SP, Brasil"
+                app:MvxBind="Text BizCard.Endereco"/>
+                
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent" 
                 android:layout_margin="5dp"
                 android:text="@string/label_telefone_principal"
