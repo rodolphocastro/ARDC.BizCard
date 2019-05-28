@@ -12,40 +12,173 @@
         android:layout_height="match_parent" 
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
-            android:text="@string/label_nome_completo"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:labelFor="@+id/bizcard_nome_completo"
+                android:text="@string/label_nome_completo"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
-            android:text="@string/label_email"/>
+            <TextView
+                android:id="@+id/bizcard_nome_completo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="Lorem Ipsum Dolor Sit Amet"
+                app:MvxBind="Text BizCard.NomeCompleto"/>
+                
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
-            android:text="@string/label_telefone_principal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:labelFor="@+id/bizcard_email"
+                android:text="@string/label_email"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
-            android:text="@string/label_telefone_secundario"/>
+            <TextView
+                android:id="@+id/bizcard_email"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="lorem.ipsum@dolor.sit"
+                app:MvxBind="Text BizCard.Email"/>
+                
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="@string/label_telefone_principal"
+                android:labelFor="@+id/bizcard_telefone_principal"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
-            android:text="@string/label_whatsapp"/>
+            <TextView
+                android:id="@+id/bizcard_telefone_principal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="(41) 9-1234-4321"
+                app:MvxBind="Text BizCard.TelefonePrincipal"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
-            android:text="@string/label_linkedin"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
-            android:text="@string/label_website"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+        
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="@string/label_telefone_secundario"
+                android:labelFor="@+id/bizcard_telefone_secundario"
+                android:textStyle="bold"/>
+        
+            <TextView
+                android:id="@+id/bizcard_telefone_secundario"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="(41) 3212-2123"
+                app:MvxBind="Text BizCard.TelefoneSecundario"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="@string/label_whatsapp"
+                android:labelFor="@+id/bizcard_whatsapp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bizcard_whatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="+5541912344321"
+                app:MvxBind="Text BizCard.Whatsapp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:text="@string/label_linkedin"
+                android:labelFor="@+id/bizcard_linkedin"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bizcard_linkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="lorem.ipsum.123"
+                app:MvxBind="Text BizCard.LinkedIn"/>
+        
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="@string/label_website"
+                android:labelFor="@+id/bizcard_website"
+                android:textStyle="bold"/>
+        
+            <TextView
+                android:id="@+id/bizcard_website"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:layout_margin="5dp"
+                android:text="https://google.com"
+                app:MvxBind="Text BizCard.Website"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
