@@ -30,9 +30,13 @@ namespace ARDC.BizCard.Core.ViewModels
 
         public override async Task Initialize()
         {
+            IsBusy = true;
+
             await base.Initialize();
 
             BizCard = await BizCardService.GetCardAsync();
+
+            IsBusy = false;
         }
     }
 }

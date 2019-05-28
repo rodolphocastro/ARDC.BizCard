@@ -12,6 +12,15 @@
         android:layout_height="match_parent" 
         android:orientation="vertical">
 
+        <ProgressBar
+            android:id="@+id/my_progressBar"  
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:indeterminate="true"
+            tools:visibility="visible"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            app:MvxBind="Visibility Visibility(IsBusy)"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
