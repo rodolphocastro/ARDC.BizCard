@@ -22,4 +22,9 @@
   <string name="label_endereco">Endereço</string>
   <!-- Elementos do Landing -->
   <string name="landing_message">Bem vindo ao App! Escolha uma opção no menu superior!</string>
+  <!-- Elementos da Edição -->
+  <string name="edit_loading">Carregando...</string>
+  <string name="edit_welcome">Preencha os dados de seu cartão de visita</string>
+  <!-- Elementos da Visualização -->
+  <string name="view_loading">Aguarde, estamos carregando seu Cartão</string>
 </resources>
