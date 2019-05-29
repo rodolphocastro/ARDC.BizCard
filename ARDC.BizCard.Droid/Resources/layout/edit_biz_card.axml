@@ -36,8 +36,9 @@
                 app:MvxBind="Text BizCard.NomeCompleto"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
-                android:singleLine="true" 
-                />
+                android:singleLine="true"
+                android:drawableLeft="@drawable/account"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -56,8 +57,9 @@
                 app:MvxBind="Text BizCard.Email"
                 android:inputType="textEmailAddress"
                 android:textSize="16sp"
-                android:singleLine="true" 
-                />
+                android:singleLine="true"
+                android:drawableLeft="@drawable/at"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -76,8 +78,9 @@
                 app:MvxBind="Text BizCard.Empresa"
                 android:inputType="textNoSuggestions"
                 android:textSize="16sp"
-                android:singleLine="true" 
-                />
+                android:singleLine="true"
+                android:drawableLeft="@drawable/domain"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -96,7 +99,9 @@
                 app:MvxBind="Text BizCard.Cargo"
                 android:inputType="textNoSuggestions"
                 android:textSize="16sp"
-                android:singleLine="true" 
+                android:singleLine="true"
+                android:drawableLeft="@drawable/briefcase"
+                android:drawablePadding="5sp"
                 />
 
         </android.support.design.widget.TextInputLayout>
@@ -117,7 +122,8 @@
                 android:inputType="textPostalAddress"
                 android:textSize="16sp"
                 android:singleLine="true" 
-                />
+                android:drawableLeft="@drawable/map_marker"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -137,7 +143,8 @@
                 android:inputType="phone"
                 android:textSize="16sp"
                 android:singleLine="true" 
-                />
+                android:drawableLeft="@drawable/phone"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -158,8 +165,9 @@
                 app:MvxBind="Text BizCard.TelefoneSecundario"
                 android:inputType="phone"
                 android:textSize="16sp"
-                android:singleLine="true" 
-                />
+                android:singleLine="true"                 
+                android:drawableLeft="@drawable/phone"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -179,8 +187,8 @@
                 android:inputType="phone"
                 android:textSize="16sp"
                 android:singleLine="true"
-                android:id="@+id/editText2" 
-                />
+                android:drawableLeft="@drawable/whatsapp"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -199,8 +207,9 @@
                 app:MvxBind="Text BizCard.LinkedIn"
                 android:inputType="textNoSuggestions"
                 android:textSize="16sp"
-                android:singleLine="true" 
-                />
+                android:singleLine="true"
+                android:drawableLeft="@drawable/linkedin_box"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -220,7 +229,8 @@
                 android:inputType="textNoSuggestions"
                 android:textSize="16sp"
                 android:singleLine="true" 
-                />
+                android:drawableLeft="@drawable/link"
+                android:drawablePadding="5sp"/>
 
         </android.support.design.widget.TextInputLayout>
         
@@ -228,8 +238,7 @@
             android:id="@+id/buttonSalvarDados"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_margin="8dp"
             android:layout_gravity="center"
             android:text="@string/action_save_changes"
             app:MvxBind="Click SaveChangesCommand"/>
