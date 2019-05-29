@@ -1,11 +1,9 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.Design.Widget;
 using Android.Views;
 using ARDC.BizCard.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using System;
 
 namespace ARDC.BizCard.Droid
 {
@@ -21,9 +19,6 @@ namespace ARDC.BizCard.Droid
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-
-            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            fab.Click += FabOnClick;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -50,13 +45,6 @@ namespace ARDC.BizCard.Droid
             }
 
             return base.OnOptionsItemSelected(item);
-        }
-
-        private void FabOnClick(object sender, EventArgs eventArgs)
-        {
-            View view = (View)sender;
-            Snackbar.Make(view, "Ainda nâo implementado", Snackbar.LengthLong)
-                .SetAction("Action", (View.IOnClickListener)null).Show();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
