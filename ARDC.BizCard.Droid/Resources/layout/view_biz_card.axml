@@ -23,7 +23,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:indeterminate="true"
-            app:MvxBind="Visibility Visibility(IsBusy)"/>
+            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/view_loading"
-            app:MvxBind="Visibility Visibility(IsBusy)"/>
+            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
         <!-- Campos do Cartão -->
                     

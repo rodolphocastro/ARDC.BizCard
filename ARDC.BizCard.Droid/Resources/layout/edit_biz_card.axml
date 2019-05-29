@@ -22,7 +22,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:indeterminate="true"
-            app:MvxBind="Visibility Visibility(IsBusy)"/>
+            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/edit_loading"
-            app:MvxBind="Visibility Visibility(IsBusy)"/>
+            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:gravity="center"
             android:text="@string/edit_welcome"
             android:textStyle="bold"
-            app:MvxBind="Visibility Visibility(!IsBusy)"/>
+            app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
 
         <!-- Inputs -->
         <android.support.design.widget.TextInputLayout
