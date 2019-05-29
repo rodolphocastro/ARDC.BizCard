@@ -8,12 +8,12 @@ namespace ARDC.BizCard.Core
     {
         public override void Initialize()
         {
+            Akavache.Registrations.Start("ArdcBizCard");
+
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
-            Akavache.Registrations.Start("ArdcBizCard");
 
             RegisterAppStart<LandingViewModel>();
         }
