@@ -10,17 +10,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" 
-        android:orientation="vertical">              
+        android:orientation="vertical"
+        android:padding="10dp">
 
+        <!-- Indicadores de Carregando -->
         <ProgressBar
             android:id="@+id/my_progressBar"  
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:indeterminate="true"
-            tools:visibility="visible"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             app:MvxBind="Visibility Visibility(IsBusy)"/>
 
+        <TextView
+            android:id="@+id/my_progressBar"  
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/edit_loading"
+            app:MvxBind="Visibility Visibility(IsBusy)"/>
+
+        <TextView
+            android:id="@+id/my_progressBar"  
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/edit_welcome"
+            android:textStyle="bold"
+            app:MvxBind="Visibility Visibility(!IsBusy)"/>
+
+        <!-- Inputs -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
