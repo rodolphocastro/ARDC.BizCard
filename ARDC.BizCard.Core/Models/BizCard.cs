@@ -15,5 +15,11 @@
         public string LinkedIn { get; set; }
 
         public string Website { get; set; }
+
+        public string Empresa { get; set; }
+
+        public string Cargo { get; set; }
+
+        public string Endereco { get; set; }
     }
 }
