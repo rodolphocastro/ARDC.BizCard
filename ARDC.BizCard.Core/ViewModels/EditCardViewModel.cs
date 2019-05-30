@@ -4,6 +4,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels
@@ -15,7 +16,7 @@ namespace ARDC.BizCard.Core.ViewModels
             BizCardService = bizCardService;
 
             NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
-            SaveChangesCommand = new MvxAsyncCommand(async () => await BizCardService.CreateOrEditCardAsync(BizCard));
+            SaveChangesCommand = new MvxCommand(() => SaveChangesTask = MvxNotifyTask.Create(() => SaveChangesAsync()));
         }
         private IBizCardService BizCardService { get; }
 
@@ -27,15 +28,29 @@ namespace ARDC.BizCard.Core.ViewModels
             set { SetProperty(ref _bizCard, value); }
         }
 
+        private MvxNotifyTask _saveChangesTask;
+
+        public MvxNotifyTask SaveChangesTask
+        {
+            get { return _saveChangesTask; }
+            set { SetProperty(ref _saveChangesTask, value); }
+        }
+
+
         public IMvxAsyncCommand NavigateToHomeCommand { get; private set; }
 
-        public IMvxAsyncCommand SaveChangesCommand { get; private set; }
+        public IMvxCommand SaveChangesCommand { get; private set; }
 
         public override async Task Initialize()
         {
             await base.Initialize();
 
             BizCard = await BizCardService.GetCardAsync();
+        }
+
+        private async Task SaveChangesAsync()
+        {
+            await BizCardService.CreateOrEditCardAsync(BizCard);
         }
     }
 }
