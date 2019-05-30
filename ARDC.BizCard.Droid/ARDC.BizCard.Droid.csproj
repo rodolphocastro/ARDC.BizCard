@@ -60,6 +60,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
     <Compile Include="Fragments\EditBizCard.cs" />
     <Compile Include="Fragments\HomeContent.cs" />
     <Compile Include="Fragments\ViewBizCard.cs" />
