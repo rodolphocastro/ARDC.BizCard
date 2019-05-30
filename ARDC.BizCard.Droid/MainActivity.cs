@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using ARDC.BizCard.Core.ViewModels;
+using ARDC.BizCard.Droid.Fragments;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace ARDC.BizCard.Droid
@@ -19,6 +20,14 @@ namespace ARDC.BizCard.Droid
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+
+            if (savedInstanceState == null)
+            {
+                HomeContent landingFragment = new HomeContent();
+                var fTrans = SupportFragmentManager.BeginTransaction();
+                fTrans.Add(Resource.Id.content_frame, landingFragment);
+                fTrans.Commit();
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
