@@ -34,6 +34,13 @@
             android:text="@string/view_loading"
             app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
+        <!-- QR Code-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center"
+            app:MvxBind="Bitmap ByteArrayToImage(BizCardByteArray)"/>
+
         <!-- Campos do Cartão -->
                     
         <TextView
