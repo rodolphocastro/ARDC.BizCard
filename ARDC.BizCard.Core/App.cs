@@ -13,8 +13,6 @@ namespace ARDC.BizCard.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            Akavache.Registrations.Start("ArdcBizCard");
-
             RegisterAppStart<LandingViewModel>();
         }
     }
