@@ -263,7 +263,7 @@
             android:layout_margin="8dp"
             android:layout_gravity="center"
             android:text="@string/action_save_changes"
-            app:MvxBind="Click SaveChangesCommand"/>
+            app:MvxBind="Click SaveChangesCommand; Enabled InitializeTask.IsCompleted"/>
     
     </LinearLayout>
 </ScrollView>
