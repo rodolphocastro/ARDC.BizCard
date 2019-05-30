@@ -3,11 +3,12 @@ using ARDC.BizCard.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels
 {
-    public class ViewCardViewModel : BaseViewModel
+    public class ViewCardViewModel : MvxNavigationViewModel
     {
         public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
         {
@@ -30,13 +31,9 @@ namespace ARDC.BizCard.Core.ViewModels
 
         public override async Task Initialize()
         {
-            IsBusy = true;
-
             await base.Initialize();
 
             BizCard = await BizCardService.GetCardAsync();
-
-            IsBusy = false;
         }
     }
 }
