@@ -1,4 +1,5 @@
-﻿using Android.Support.Design.Widget;
+﻿using Android.Support.Design.Button;
+using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Widget;
 using ARDC.BizCard.Core;
@@ -22,7 +23,9 @@ namespace ARDC.BizCard.Droid
             typeof(CoordinatorLayout).Assembly,
             typeof(FloatingActionButton).Assembly,
             typeof(Toolbar).Assembly,
-            typeof(NestedScrollView).Assembly
+            typeof(NestedScrollView).Assembly,
+            typeof(TextInputEditText).Assembly,
+            typeof(MaterialButton).Assembly
         };
     }
 }
