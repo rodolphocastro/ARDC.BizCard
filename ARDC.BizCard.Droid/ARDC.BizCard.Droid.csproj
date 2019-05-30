@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fragments\EditBizCard.cs" />
+    <Compile Include="Fragments\HomeContent.cs" />
     <Compile Include="Fragments\ViewBizCard.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
