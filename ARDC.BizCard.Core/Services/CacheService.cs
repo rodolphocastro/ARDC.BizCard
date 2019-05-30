@@ -7,6 +7,11 @@ namespace ARDC.BizCard.Core.Services
 {
     public class CacheService : ICacheService
     {
+        public CacheService()
+        {
+            Akavache.Registrations.Start("ArdcBizCard");    // Inicializa o Akavache
+        }
+
         public async Task InvalidateObjectAsync(string key, CacheType source)
         {
             switch (source)
