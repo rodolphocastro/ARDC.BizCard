@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!-- Indicadores de Carregando -->
+    <ProgressBar
+        android:id="@+id/my_progressBar"  
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:indeterminate="true"
+        app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/qr_loading"
+        app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/qr_welcome"
+        android:textStyle="bold"
+        app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
+
+    <!-- QR Code-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:layout_gravity="center"
+        app:MvxBind="Bitmap ByteArrayToImage(QrBytes); Visibility Visibility(HasQrData)"/>
+
+</LinearLayout>
