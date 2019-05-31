@@ -10,14 +10,15 @@ namespace ARDC.BizCard.Core.ViewModels
 {
     public class ViewCardViewModel : MvxNavigationViewModel
     {
-        public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
+        public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService, IQrCodeService qrCodeService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService;
-
+            QrCodeService = qrCodeService;
             NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
         }
 
         private IBizCardService BizCardService { get; }
+        private IQrCodeService QrCodeService { get; }
 
         public IMvxAsyncCommand NavigateToHomeCommand { get; private set; }
 
@@ -29,11 +30,24 @@ namespace ARDC.BizCard.Core.ViewModels
             set { SetProperty(ref _bizCard, value); }
         }
 
+        private byte[] _bizCardByteArray;
+
+        public byte[] BizCardByteArray
+        {
+            get { return _bizCardByteArray; }
+            set { SetProperty(ref _bizCardByteArray, value); }
+        }
+
         public override async Task Initialize()
         {
             await base.Initialize();
 
             BizCard = await BizCardService.GetCardAsync();
+
+            string jsonCard = await BizCardService.GetCardAsJSONAsync();
+
+            if (!string.IsNullOrWhiteSpace(jsonCard))
+                BizCardByteArray = await QrCodeService.CreateQRCode(jsonCard);
         }
     }
 }

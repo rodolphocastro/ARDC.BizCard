@@ -32,7 +32,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/view_loading"
-            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>        
 
         <!-- Campos do Cartão -->
                     

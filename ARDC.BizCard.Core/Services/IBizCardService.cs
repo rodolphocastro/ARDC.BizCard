@@ -10,6 +10,6 @@ namespace ARDC.BizCard.Core.Services
 
         Task<BizCardContent> GetCardAsync(CancellationToken ct = default);
 
-        Task GetQRCodeAsync(BizCardContent bizCard, CancellationToken ct = default);
+        Task<string> GetCardAsJSONAsync(CancellationToken ct = default);
     }
 }
