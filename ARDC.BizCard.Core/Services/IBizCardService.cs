@@ -9,7 +9,5 @@ namespace ARDC.BizCard.Core.Services
         Task CreateOrEditCardAsync(BizCardContent bizCard, CancellationToken ct = default);
 
         Task<BizCardContent> GetCardAsync(CancellationToken ct = default);
-
-        Task GetQRCodeAsync(BizCardContent bizCard, CancellationToken ct = default);
     }
 }

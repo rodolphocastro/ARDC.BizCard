@@ -1,8 +1,5 @@
-﻿using Akavache;
-using ARDC.BizCard.Core.Models;
+﻿using ARDC.BizCard.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,11 +31,6 @@ namespace ARDC.BizCard.Core.Services
                 BizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
 
             return BizCard ?? new BizCardContent();
-        }
-
-        public Task GetQRCodeAsync(BizCardContent bizCard, CancellationToken ct)
-        {
-            throw new NotImplementedException();
         }
     }
 }
