@@ -47,6 +47,9 @@ namespace ARDC.BizCard.Droid
                 case (Resource.Id.action_view_card):
                     ViewModel.NavigateToCardCommand.Execute();
                     break;
+                case (Resource.Id.action_qrcode):
+                    ViewModel.NavigateToQrCommand.Execute();
+                    break;
                 case (Resource.Id.action_settings):
                 // TODO: navegar á visualização de Configurações
                 default:

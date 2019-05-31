@@ -1,8 +1,6 @@
-﻿using Akavache;
-using ARDC.BizCard.Core.Models;
+﻿using ARDC.BizCard.Core.Models;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,9 +34,12 @@ namespace ARDC.BizCard.Core.Services
             return BizCard ?? new BizCardContent();
         }
 
-        public Task GetQRCodeAsync(BizCardContent bizCard, CancellationToken ct)
+        public async Task<string> GetCardAsJSONAsync(CancellationToken ct = default)
         {
-            throw new NotImplementedException();
+            if (BizCard == null)
+                BizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+
+            return JsonConvert.SerializeObject(BizCard);
         }
     }
 }

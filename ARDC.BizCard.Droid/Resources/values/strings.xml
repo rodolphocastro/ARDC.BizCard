@@ -6,7 +6,7 @@
   <string name="action_read_card">Ler Cartão (Não Disponível)</string>
   <string name="action_settings">Configurações</string>
   <string name="action_share">Compartilhar meu Cartão (Não Disponível)</string>
-  <string name="action_qrcode">Gerar QR Code (Não Disponível)</string>
+  <string name="action_qrcode">QR Code</string>
   <string name="action_save_changes">Salvar Alterações</string>
   <!-- Labels do Cartão de Visita -->
   <string name="label_cartao">Cartão de Visita</string>
@@ -27,4 +27,7 @@
   <string name="edit_welcome">Preencha os dados de seu cartão de visita</string>
   <!-- Elementos da Visualização -->
   <string name="view_loading">Aguarde, estamos carregando seu Cartão</string>
+  <!-- Elementos do QR Code -->
+  <string name="qr_loading">Gerando QR Code, aguarde</string>
+  <string name="qr_welcome">Este é o QR Code de seu cartão!</string>
 </resources>
