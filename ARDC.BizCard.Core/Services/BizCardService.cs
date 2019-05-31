@@ -1,4 +1,5 @@
 ﻿using ARDC.BizCard.Core.Models;
+using Newtonsoft.Json;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,6 +32,14 @@ namespace ARDC.BizCard.Core.Services
                 BizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
 
             return BizCard ?? new BizCardContent();
+        }
+
+        public async Task<string> GetCardAsJSONAsync(CancellationToken ct = default)
+        {
+            if (BizCard == null)
+                BizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+
+            return JsonConvert.SerializeObject(BizCard);
         }
     }
 }

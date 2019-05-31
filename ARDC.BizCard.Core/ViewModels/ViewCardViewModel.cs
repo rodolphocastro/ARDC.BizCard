@@ -44,7 +44,10 @@ namespace ARDC.BizCard.Core.ViewModels
 
             BizCard = await BizCardService.GetCardAsync();
 
-            BizCardByteArray = await QrCodeService.CreateQRCode(BizCard.NomeCompleto);
+            string jsonCard = await BizCardService.GetCardAsJSONAsync();
+
+            if (!string.IsNullOrWhiteSpace(jsonCard))
+                BizCardByteArray = await QrCodeService.CreateQRCode(jsonCard);
         }
     }
 }

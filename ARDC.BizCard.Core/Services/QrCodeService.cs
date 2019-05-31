@@ -11,7 +11,7 @@ namespace ARDC.BizCard.Core.Services
             var codeGenerator = new QRCodeGenerator();
             QRCodeData qrData = codeGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.M, true);
             BitmapByteQRCode qrCode = new BitmapByteQRCode(qrData);
-            byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(20);
+            byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(10);
 
             return Task.FromResult(qrCodeAsBitmapByteArr);
         }
