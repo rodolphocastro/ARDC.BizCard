@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\QR.cs" />
+    <Compile Include="Activities\QrCodeScanner.cs" />
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
     <Compile Include="Fragments\EditBizCard.cs" />
     <Compile Include="Fragments\HomeContent.cs" />
@@ -188,7 +189,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\link.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\qr_scanner.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\qr_code.axml">
       <SubType>Designer</SubType>

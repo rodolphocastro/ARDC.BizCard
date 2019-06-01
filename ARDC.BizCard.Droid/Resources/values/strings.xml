@@ -3,7 +3,7 @@
   <!-- Ações -->
   <string name="action_edit_card">Configurar Cartão</string>
   <string name="action_view_card">Exibir Cartão</string>
-  <string name="action_read_card">Ler Cartão (Não Disponível)</string>
+  <string name="action_read_card">Ler Cartão</string>
   <string name="action_settings">Configurações</string>
   <string name="action_share">Compartilhar meu Cartão (Não Disponível)</string>
   <string name="action_qrcode">QR Code</string>
