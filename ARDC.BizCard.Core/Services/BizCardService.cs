@@ -41,5 +41,22 @@ namespace ARDC.BizCard.Core.Services
 
             return JsonConvert.SerializeObject(BizCard);
         }
+
+        public Task<BizCardContent> GetCardsFromJSONAsync(string jsonCard, CancellationToken ct = default)
+        {
+            if (string.IsNullOrEmpty(jsonCard))
+                return Task.FromResult(new BizCardContent());
+
+            try
+            {
+                var newBizCard = JsonConvert.DeserializeObject<BizCardContent>(jsonCard);
+                return Task.FromResult(newBizCard);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(new BizCardContent());
+                throw;
+            }
+        }
     }
 }
