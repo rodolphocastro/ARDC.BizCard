@@ -4,7 +4,6 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels
