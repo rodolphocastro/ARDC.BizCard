@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using ARDC.BizCard.Core.ViewModels.Card;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;

@@ -6,7 +6,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 
-namespace ARDC.BizCard.Core.ViewModels
+namespace ARDC.BizCard.Core.ViewModels.Card
 {
     public class ViewCardViewModel : MvxNavigationViewModel
     {
