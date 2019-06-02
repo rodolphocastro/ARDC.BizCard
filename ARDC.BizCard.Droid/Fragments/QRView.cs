@@ -9,8 +9,8 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 namespace ARDC.BizCard.Droid.Fragments
 {
     [MvxFragmentPresentation(ActivityHostViewModelType = typeof(LandingViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
-    [Register(nameof(QR))]
-    public class QR : MvxFragment<QrCodeViewModel>
+    [Register(nameof(QRView))]
+    public class QRView : MvxFragment<QrCodeViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

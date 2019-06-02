@@ -23,7 +23,7 @@ namespace ARDC.BizCard.Droid
 
             if (savedInstanceState == null)
             {
-                HomeContent landingFragment = new HomeContent();
+                HomeContentView landingFragment = new HomeContentView();
                 var fTrans = SupportFragmentManager.BeginTransaction();
                 fTrans.Add(Resource.Id.content_frame, landingFragment);
                 fTrans.Commit();

@@ -9,21 +9,21 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 namespace ARDC.BizCard.Droid.Fragments
 {
     [MvxFragmentPresentation(ActivityHostViewModelType = typeof(LandingViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
-    [Register(nameof(ViewBizCard))]
-    public class ViewBizCard : MvxFragment<ViewCardViewModel>
+    [Register(nameof(HomeContentView))]
+    public class HomeContentView : MvxFragment<HomeContentViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var _ = base.OnCreateView(inflater, container, savedInstanceState);
 
-            return this.BindingInflate(Resource.Layout.view_biz_card, null);
+            return this.BindingInflate(Resource.Layout.content_main, null);
         }
 
         public override void OnResume()
         {
             base.OnResume();
 
-            Activity?.SetTitle(Resource.String.action_view_card);
+            Activity?.SetTitle(Resource.String.app_name);
         }
     }
 }

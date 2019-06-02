@@ -60,12 +60,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fragments\QR.cs" />
-    <Compile Include="Activities\QrCodeScanner.cs" />
+    <Compile Include="Fragments\QRView.cs" />
+    <Compile Include="Activities\QRScannerView.cs" />
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
-    <Compile Include="Fragments\EditBizCard.cs" />
-    <Compile Include="Fragments\HomeContent.cs" />
-    <Compile Include="Fragments\ViewBizCard.cs" />
+    <Compile Include="Fragments\EditBizCardView.cs" />
+    <Compile Include="Fragments\HomeContentView.cs" />
+    <Compile Include="Fragments\ViewBizCardView.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
