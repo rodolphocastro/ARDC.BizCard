@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">Meu Cartão de Visitas</string>
   <!-- Ações -->
+  <string name="action_my_card">Meu Cartão</string>
   <string name="action_edit_card">Configurar Cartão</string>
   <string name="action_view_card">Exibir Cartão</string>
   <string name="action_read_card">Ler Cartão</string>
