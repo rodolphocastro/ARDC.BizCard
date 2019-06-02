@@ -53,8 +53,6 @@ namespace ARDC.BizCard.Droid.Activities
                 case (Resource.Id.action_read_card):
                     ViewModel.NavigateToReadQrCommand.Execute();
                     break;
-                case (Resource.Id.action_settings):
-                // TODO: navegar á visualização de Configurações
                 default:
                     break;
             }
