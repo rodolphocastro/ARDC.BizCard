@@ -6,9 +6,9 @@ using MvvmCross.ViewModels;
 
 namespace ARDC.BizCard.Core.ViewModels
 {
-    public class HomeContentViewModel : MvxNavigationViewModel
+    public class LandingViewModel : MvxNavigationViewModel
     {
-        public HomeContentViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public LandingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             NavigateToCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
         }

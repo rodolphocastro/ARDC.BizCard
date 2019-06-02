@@ -64,7 +64,7 @@
     <Compile Include="Activities\QRScannerView.cs" />
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
     <Compile Include="Fragments\EditMyBizCardView.cs" />
-    <Compile Include="Fragments\HomeContentView.cs" />
+    <Compile Include="Fragments\LandingView.cs" />
     <Compile Include="Fragments\ViewMyBizCardView.cs" />
     <Compile Include="Activities\MainView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -81,7 +81,7 @@
     <AndroidResource Include="Resources\layout\activity_main.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\content_main.axml">
+    <AndroidResource Include="Resources\layout\landing.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
