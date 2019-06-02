@@ -150,12 +150,12 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\edit_biz_card.axml">
+    <AndroidResource Include="Resources\layout\my_card_edit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\view_biz_card.axml">
+    <AndroidResource Include="Resources\layout\my_card_view.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

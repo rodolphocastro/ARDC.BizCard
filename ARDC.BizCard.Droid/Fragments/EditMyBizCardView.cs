@@ -17,7 +17,7 @@ namespace ARDC.BizCard.Droid.Fragments
         {
             var _ = base.OnCreateView(inflater, container, savedInstanceState);
 
-            return this.BindingInflate(Resource.Layout.edit_biz_card, null);
+            return this.BindingInflate(Resource.Layout.my_card_edit, null);
         }
 
         public override void OnResume()
