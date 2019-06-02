@@ -48,7 +48,7 @@ namespace ARDC.BizCard.Droid.Activities
         {
             if (result != null && !string.IsNullOrEmpty(result.Text))
             {
-                ViewModel?.SaveCardCommand.Execute(result.Text);
+                ViewModel?.ReadCardCommand.Execute(result.Text);
                 Scanner.Cancel();
             }
             else

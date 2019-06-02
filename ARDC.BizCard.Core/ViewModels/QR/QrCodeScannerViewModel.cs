@@ -16,7 +16,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
 
-            SaveCardCommand = new MvxCommand<string>((p) => SaveCardTask = MvxNotifyTask.Create(() => AddCardToMemoryAsync(p)));
+            ReadCardCommand = new MvxCommand<string>((p) => SaveCardTask = MvxNotifyTask.Create(() => LoadCardFromJsonAsync(p)));
         }
 
         private IBizCardService BizCardService { get; }
@@ -37,20 +37,11 @@ namespace ARDC.BizCard.Core.ViewModels.QR
             set { SetProperty(ref _bizCard, value); }
         }
 
-        private bool _hasCard = false;
+        public IMvxCommand<string> ReadCardCommand { get; private set; }
 
-        public bool HasCard
-        {
-            get { return _hasCard; }
-            set { SetProperty(ref _hasCard, value); }
-        }
-
-        public IMvxCommand<string> SaveCardCommand { get; private set; }
-
-        private async Task AddCardToMemoryAsync(string payload, CancellationToken ct = default)
+        private async Task LoadCardFromJsonAsync(string payload, CancellationToken ct = default)
         {
             BizCard = await BizCardService.GetCardFromJSONAsync(payload);
-            HasCard = string.IsNullOrEmpty(BizCard.NomeCompleto);
         }
     }
 }
