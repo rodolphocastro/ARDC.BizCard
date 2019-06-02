@@ -4,14 +4,13 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
 using System.Threading.Tasks;
 
-namespace ARDC.BizCard.Core.ViewModels
+namespace ARDC.BizCard.Core.ViewModels.Card
 {
-    public class EditCardViewModel : MvxNavigationViewModel
+    public class EditMyCardViewModel : MvxNavigationViewModel
     {
-        public EditCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
+        public EditMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService;
 
@@ -35,7 +34,6 @@ namespace ARDC.BizCard.Core.ViewModels
             get { return _saveChangesTask; }
             set { SetProperty(ref _saveChangesTask, value); }
         }
-
 
         public IMvxAsyncCommand NavigateToHomeCommand { get; private set; }
 

@@ -8,15 +8,22 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace ARDC.BizCard.Droid.Fragments
 {
-    [MvxFragmentPresentation(ActivityHostViewModelType = typeof(LandingViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
-    [Register(nameof(HomeContent))]
-    public class HomeContent : MvxFragment<HomeContentViewModel>
+    [MvxFragmentPresentation(ActivityHostViewModelType = typeof(MainViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
+    [Register(nameof(LandingView))]
+    public class LandingView : MvxFragment<LandingViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var _ = base.OnCreateView(inflater, container, savedInstanceState);
 
-            return this.BindingInflate(Resource.Layout.content_main, null);
+            return this.BindingInflate(Resource.Layout.landing, null);
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+
+            Activity?.SetTitle(Resource.String.app_name);
         }
     }
 }
