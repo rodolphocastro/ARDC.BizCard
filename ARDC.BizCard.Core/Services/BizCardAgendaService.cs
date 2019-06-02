@@ -25,6 +25,7 @@ namespace ARDC.BizCard.Core.Services
                 await InitializeCollection();
 
             BizCards.Add(newCard);  // TODO: Validar duplicatas
+            await UpdateCache();
         }
 
         public async Task<IList<BizCardContent>> GetCardsAsync(CancellationToken ct)
@@ -41,6 +42,7 @@ namespace ARDC.BizCard.Core.Services
                 await InitializeCollection();
 
             BizCards.Remove(card); // TODO: Validar casos inexistentes
+            await UpdateCache();
         }
 
         private async Task InitializeCollection()
@@ -48,6 +50,12 @@ namespace ARDC.BizCard.Core.Services
             BizCards = new List<BizCardContent>();
             var cacheCards = await CacheService.RecoverObjectAsync<List<BizCardContent>>(MyAgendaCacheKey, CacheType.Local);
             BizCards.AddRange(cacheCards);
+        }
+
+        private async Task UpdateCache()
+        {
+            if (BizCards != null)
+                await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
         }
     }
 }
