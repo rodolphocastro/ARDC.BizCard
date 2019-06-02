@@ -63,7 +63,7 @@
     <Compile Include="Fragments\QRView.cs" />
     <Compile Include="Activities\QRScannerView.cs" />
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
-    <Compile Include="Fragments\EditBizCardView.cs" />
+    <Compile Include="Fragments\EditMyBizCardView.cs" />
     <Compile Include="Fragments\HomeContentView.cs" />
     <Compile Include="Fragments\ViewMyBizCardView.cs" />
     <Compile Include="MainActivity.cs" />
