@@ -49,6 +49,10 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         private async Task SaveChangesAsync()
         {
             await BizCardService.CreateOrEditCardAsync(BizCard);
+
+            // TODO: Notificar que as alterações foram salvas
+
+            await NavigateToViewMyCardCommand.ExecuteAsync();
         }
     }
 }
