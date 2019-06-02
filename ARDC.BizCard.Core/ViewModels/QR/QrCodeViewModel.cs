@@ -6,7 +6,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.Threading.Tasks;
 
-namespace ARDC.BizCard.Core.ViewModels
+namespace ARDC.BizCard.Core.ViewModels.QR
 {
     public class QrCodeViewModel : MvxNavigationViewModel
     {
