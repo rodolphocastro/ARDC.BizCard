@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels.Card
 {
-    public class ViewCardViewModel : MvxNavigationViewModel
+    public class ViewMyCardViewModel : MvxNavigationViewModel
     {
-        public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
+        public ViewMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService;
             NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));

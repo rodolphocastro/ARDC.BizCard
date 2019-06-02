@@ -65,7 +65,7 @@
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
     <Compile Include="Fragments\EditBizCardView.cs" />
     <Compile Include="Fragments\HomeContentView.cs" />
-    <Compile Include="Fragments\ViewBizCardView.cs" />
+    <Compile Include="Fragments\ViewMyBizCardView.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

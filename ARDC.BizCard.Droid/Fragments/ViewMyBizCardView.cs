@@ -10,8 +10,8 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 namespace ARDC.BizCard.Droid.Fragments
 {
     [MvxFragmentPresentation(ActivityHostViewModelType = typeof(LandingViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
-    [Register(nameof(ViewBizCardView))]
-    public class ViewBizCardView : MvxFragment<ViewCardViewModel>
+    [Register(nameof(ViewMyBizCardView))]
+    public class ViewMyBizCardView : MvxFragment<ViewMyCardViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
