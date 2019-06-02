@@ -29,19 +29,13 @@ namespace ARDC.BizCard.Core.ViewModels.QR
             set { SetProperty(ref _saveCardTask, value); }
         }
 
-        private BizCardContent _bizCard;
-
-        public BizCardContent BizCard
-        {
-            get { return _bizCard; }
-            set { SetProperty(ref _bizCard, value); }
-        }
-
         public IMvxCommand<string> ReadCardCommand { get; private set; }
 
         private async Task LoadCardFromJsonAsync(string payload, CancellationToken ct = default)
         {
-            BizCard = await BizCardService.GetCardFromJSONAsync(payload);
+            var bizCard = await BizCardService.GetCardFromJSONAsync(payload);
+
+            // TODO: Notificar que o cartão foi lido
         }
     }
 }
