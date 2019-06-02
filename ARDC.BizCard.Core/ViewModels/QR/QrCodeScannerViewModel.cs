@@ -21,14 +21,6 @@ namespace ARDC.BizCard.Core.ViewModels.QR
 
         private IBizCardService BizCardService { get; }
 
-        private string _scannerResult;
-
-        public string ScannerResult
-        {
-            get { return _scannerResult; }
-            set { SetProperty(ref _scannerResult, value); }
-        }
-
         private MvxNotifyTask _saveCardTask;
 
         public MvxNotifyTask SaveCardTask
@@ -45,13 +37,20 @@ namespace ARDC.BizCard.Core.ViewModels.QR
             set { SetProperty(ref _bizCard, value); }
         }
 
+        private bool _hasCard = false;
+
+        public bool HasCard
+        {
+            get { return _hasCard; }
+            set { SetProperty(ref _hasCard, value); }
+        }
 
         public IMvxCommand<string> SaveCardCommand { get; private set; }
 
         private async Task AddCardToMemoryAsync(string payload, CancellationToken ct = default)
         {
-            ScannerResult = payload;
-            BizCard = await BizCardService.GetCardsFromJSONAsync(ScannerResult);
+            BizCard = await BizCardService.GetCardFromJSONAsync(payload);
+            HasCard = string.IsNullOrEmpty(BizCard.NomeCompleto);
         }
     }
 }
