@@ -31,4 +31,9 @@
   <!-- Elementos do QR Code -->
   <string name="qr_loading">Gerando QR Code, aguarde</string>
   <string name="qr_welcome">Este é o QR Code de seu cartão!</string>
+  <!-- Elementos do Leitor de QR Code -->
+  <string name="scan_top_text">Leia o QR Code exibido na tela do outro dispositivo</string>
+  <string name="scan_bottom_text">Aguardando QR Code</string>
+  <string name="scan_sucess">Dados de contato:</string>
+  <string name="scan_error">Não foi possível ler o QR Code</string>
 </resources>
