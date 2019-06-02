@@ -60,7 +60,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\QR.cs" />
+    <Compile Include="Fragments\QR.cs" />
     <Compile Include="Activities\QrCodeScanner.cs" />
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
     <Compile Include="Fragments\EditBizCard.cs" />
