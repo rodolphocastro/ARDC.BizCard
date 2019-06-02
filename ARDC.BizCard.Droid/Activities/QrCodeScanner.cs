@@ -6,7 +6,7 @@ using ZXing.Mobile;
 
 namespace ARDC.BizCard.Droid.Activities
 {
-    [Activity(Label = "@string/action_read_card", Theme = "@style/AppTheme")]
+    [Activity(Label = "@string/action_read_card", Theme = "@style/AppTheme.NoActionBar")]
     public class QrCodeScanner : MvxAppCompatActivity<QrCodeScannerViewModel>
     {
         public MobileBarcodeScanner Scanner { get; private set; }
@@ -16,6 +16,9 @@ namespace ARDC.BizCard.Droid.Activities
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.qr_scanner);
+
+            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
 
             MobileBarcodeScanner.Initialize(Application);
             Scanner = new MobileBarcodeScanner();
