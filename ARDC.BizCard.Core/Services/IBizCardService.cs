@@ -12,6 +12,6 @@ namespace ARDC.BizCard.Core.Services
 
         Task<string> GetCardAsJSONAsync(CancellationToken ct = default);
 
-        Task<BizCardContent> GetCardsFromJSONAsync(string jsonCard, CancellationToken ct = default);
+        Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct = default);
     }
 }

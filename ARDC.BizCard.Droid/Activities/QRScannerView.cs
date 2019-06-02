@@ -2,6 +2,8 @@
 using Android.OS;
 using ARDC.BizCard.Core.ViewModels.QR;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using System.Collections.Generic;
+using ZXing;
 using ZXing.Mobile;
 
 namespace ARDC.BizCard.Droid.Activities
@@ -28,7 +30,15 @@ namespace ARDC.BizCard.Droid.Activities
 
         private async void StartScan()
         {
-            var result = await Scanner.Scan();
+            var options = new MobileBarcodeScanningOptions()
+            {
+                PossibleFormats = new List<BarcodeFormat>() { BarcodeFormat.QR_CODE }
+            };
+
+            Scanner.TopText = Resources.GetString(Resource.String.scan_top_text);
+            Scanner.BottomText = Resources.GetString(Resource.String.scan_bottom_text);
+
+            var result = await Scanner.Scan(options);
 
             if (result != null)
                 HandleScanResult(result);
@@ -38,7 +48,7 @@ namespace ARDC.BizCard.Droid.Activities
         {
             if (result != null && !string.IsNullOrEmpty(result.Text))
             {
-                ViewModel?.SaveCardCommand.Execute(result.Text);
+                ViewModel?.ReadCardCommand.Execute(result.Text);
                 Scanner.Cancel();
             }
             else
