@@ -1,13 +1,13 @@
 ﻿using Android.App;
 using Android.OS;
-using ARDC.BizCard.Core.ViewModels;
+using ARDC.BizCard.Core.ViewModels.QR;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using ZXing.Mobile;
 
 namespace ARDC.BizCard.Droid.Activities
 {
     [Activity(Label = "@string/action_read_card", Theme = "@style/AppTheme.NoActionBar")]
-    public class QrCodeScanner : MvxAppCompatActivity<QrCodeScannerViewModel>
+    public class QRScannerView : MvxAppCompatActivity<QrCodeScannerViewModel>
     {
         public MobileBarcodeScanner Scanner { get; private set; }
 

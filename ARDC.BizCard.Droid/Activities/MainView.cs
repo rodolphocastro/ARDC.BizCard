@@ -6,24 +6,24 @@ using ARDC.BizCard.Core.ViewModels;
 using ARDC.BizCard.Droid.Fragments;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
-namespace ARDC.BizCard.Droid
+namespace ARDC.BizCard.Droid.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
-    public class MainActivity : MvxAppCompatActivity<LandingViewModel>
+    public class MainView : MvxAppCompatActivity<MainViewModel>
     {
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.main);
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
             if (savedInstanceState == null)
             {
-                HomeContent landingFragment = new HomeContent();
+                LandingView landingFragment = new LandingView();
                 var fTrans = SupportFragmentManager.BeginTransaction();
                 fTrans.Add(Resource.Id.content_frame, landingFragment);
                 fTrans.Commit();

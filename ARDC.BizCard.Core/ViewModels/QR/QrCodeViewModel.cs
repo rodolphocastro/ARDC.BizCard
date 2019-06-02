@@ -6,7 +6,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.Threading.Tasks;
 
-namespace ARDC.BizCard.Core.ViewModels
+namespace ARDC.BizCard.Core.ViewModels.QR
 {
     public class QrCodeViewModel : MvxNavigationViewModel
     {
@@ -14,7 +14,7 @@ namespace ARDC.BizCard.Core.ViewModels
         {
             BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
             QrCodeService = qrCodeService ?? throw new ArgumentNullException(nameof(qrCodeService));
-            NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<HomeContentViewModel>());
+            NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LandingViewModel>());
         }
 
         private IBizCardService BizCardService { get; }

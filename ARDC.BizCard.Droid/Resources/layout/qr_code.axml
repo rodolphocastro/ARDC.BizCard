@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="5dp"
+    tools:showIn="@layout/activity_main">
 
     <!-- Indicadores de Carregando -->
     <ProgressBar
@@ -43,6 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" 
         android:layout_gravity="center"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
         app:MvxBind="Bitmap ByteArrayToImage(QrBytes); Visibility Visibility(HasQrData)"/>
 
 </LinearLayout>
