@@ -6,10 +6,10 @@ using ARDC.BizCard.Core.ViewModels;
 using ARDC.BizCard.Droid.Fragments;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
-namespace ARDC.BizCard.Droid
+namespace ARDC.BizCard.Droid.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
-    public class MainActivity : MvxAppCompatActivity<LandingViewModel>
+    public class MainView : MvxAppCompatActivity<MainViewModel>
     {
 
         protected override void OnCreate(Bundle savedInstanceState)

@@ -9,7 +9,7 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace ARDC.BizCard.Droid.Fragments
 {
-    [MvxFragmentPresentation(ActivityHostViewModelType = typeof(LandingViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
+    [MvxFragmentPresentation(ActivityHostViewModelType = typeof(MainViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
     [Register(nameof(EditMyBizCardView))]
     public class EditMyBizCardView : MvxFragment<EditMyCardViewModel>
     {
