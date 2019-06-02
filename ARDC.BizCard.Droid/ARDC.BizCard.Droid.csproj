@@ -65,6 +65,7 @@
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
     <Compile Include="Fragments\EditMyBizCardView.cs" />
     <Compile Include="Fragments\LandingView.cs" />
+    <Compile Include="Fragments\ViewCardView.cs" />
     <Compile Include="Fragments\ViewMyBizCardView.cs" />
     <Compile Include="Activities\MainView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -201,6 +202,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\pencil.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\card_view.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
