@@ -41,11 +41,8 @@ namespace ARDC.BizCard.Droid.Activities
             int id = item.ItemId;
             switch (id)
             {
-                case (Resource.Id.action_edit_card):
-                    ViewModel.NavigateToEditCommand.Execute();
-                    break;
-                case (Resource.Id.action_view_card):
-                    ViewModel.NavigateToCardCommand.Execute();
+                case (Resource.Id.action_my_card):
+                    ViewModel.NavigateToMyCardCommand.Execute();
                     break;
                 case (Resource.Id.action_qrcode):
                     ViewModel.NavigateToQrCommand.Execute();

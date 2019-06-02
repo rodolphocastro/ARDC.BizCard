@@ -2,14 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/action_edit_card"
+        android:id="@+id/action_my_card"
         android:orderInCategory="100"
-        android:title="@string/action_edit_card"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_view_card"
-        android:orderInCategory="100"
-        android:title="@string/action_view_card"
+        android:title="@string/action_my_card"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_qrcode"

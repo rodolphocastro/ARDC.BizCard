@@ -13,7 +13,7 @@ namespace ARDC.BizCard.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<MainViewModel>();
+            RegisterAppStart<LandingViewModel>();
         }
     }
 }
