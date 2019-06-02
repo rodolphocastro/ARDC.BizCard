@@ -10,7 +10,7 @@ namespace ARDC.BizCard.Core.Services
     {
         private const string MyBizCardCacheKey = "my_bizcard";
 
-        private BizCardContent BizCard { get; set; }
+        private BizCardContent MyBizCard { get; set; }
 
         private ICacheService CacheService { get; }
 
@@ -19,30 +19,30 @@ namespace ARDC.BizCard.Core.Services
             CacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
 
-        public async Task CreateOrEditCardAsync(BizCardContent bizCard, CancellationToken ct)
+        public async Task CreateOrEditMyCardAsync(BizCardContent bizCard, CancellationToken ct)
         {
-            BizCard = bizCard;
+            MyBizCard = bizCard;
 
-            await CacheService.StoreObjectAsync(MyBizCardCacheKey, BizCard, CacheType.Local);
+            await CacheService.StoreObjectAsync(MyBizCardCacheKey, MyBizCard, CacheType.Local);
         }
 
-        public async Task<BizCardContent> GetCardAsync(CancellationToken ct)
+        public async Task<BizCardContent> GetMyCardAsync(CancellationToken ct)
         {
-            if (BizCard == null)
-                BizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+            if (MyBizCard == null)
+                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
 
-            return BizCard ?? new BizCardContent();
+            return MyBizCard ?? new BizCardContent();
         }
 
-        public async Task<string> GetCardAsJSONAsync(CancellationToken ct = default)
+        public async Task<string> GetMyCardAsJSONAsync(CancellationToken ct)
         {
-            if (BizCard == null)
-                BizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+            if (MyBizCard == null)
+                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
 
-            return JsonConvert.SerializeObject(BizCard);
+            return JsonConvert.SerializeObject(MyBizCard);
         }
 
-        public Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct = default)
+        public Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct)
         {
             if (string.IsNullOrEmpty(jsonCard))
                 return Task.FromResult(new BizCardContent());

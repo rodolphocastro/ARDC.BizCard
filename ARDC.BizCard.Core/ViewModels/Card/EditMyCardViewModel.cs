@@ -43,12 +43,12 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             await base.Initialize();
 
-            BizCard = await BizCardService.GetCardAsync();
+            BizCard = await BizCardService.GetMyCardAsync();
         }
 
         private async Task SaveChangesAsync()
         {
-            await BizCardService.CreateOrEditCardAsync(BizCard);
+            await BizCardService.CreateOrEditMyCardAsync(BizCard);
 
             // TODO: Notificar que as alterações foram salvas
 
