@@ -18,5 +18,12 @@ namespace ARDC.BizCard.Droid.Fragments
 
             return this.BindingInflate(Resource.Layout.content_main, null);
         }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+
+            Activity?.SetTitle(Resource.String.app_name);
+        }
     }
 }

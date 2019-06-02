@@ -18,5 +18,12 @@ namespace ARDC.BizCard.Droid.Fragments
 
             return this.BindingInflate(Resource.Layout.view_biz_card, null);
         }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+
+            Activity?.SetTitle(Resource.String.action_view_card);
+        }
     }
 }
