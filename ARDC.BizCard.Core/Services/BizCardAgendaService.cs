@@ -48,8 +48,10 @@ namespace ARDC.BizCard.Core.Services
         private async Task InitializeCollection()
         {
             BizCards = new List<BizCardContent>();
+
             var cacheCards = await CacheService.RecoverObjectAsync<List<BizCardContent>>(MyAgendaCacheKey, CacheType.Local);
-            BizCards.AddRange(cacheCards);
+            if (cacheCards != null)
+                BizCards.AddRange(cacheCards);
         }
 
         private async Task UpdateCache()
