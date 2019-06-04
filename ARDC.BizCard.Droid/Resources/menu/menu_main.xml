@@ -16,4 +16,9 @@
         android:orderInCategory="100"
         android:title="@string/action_read_card"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_agenda"
+        android:orderInCategory="100"
+        android:title="@string/action_agenda"
+        app:showAsAction="never" />
 </menu>

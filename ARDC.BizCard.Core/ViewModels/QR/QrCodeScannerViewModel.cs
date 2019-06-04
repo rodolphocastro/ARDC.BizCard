@@ -1,5 +1,6 @@
 ﻿using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
+using ARDC.BizCard.Core.ViewModels.Card;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -33,9 +34,11 @@ namespace ARDC.BizCard.Core.ViewModels.QR
 
         private async Task LoadCardFromJsonAsync(string payload, CancellationToken ct = default)
         {
-            var bizCard = await BizCardService.GetCardFromJSONAsync(payload);
+            var bizCard = await BizCardService.GetCardFromJSONAsync(payload, ct);
 
             // TODO: Notificar que o cartão foi lido
+
+            await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
         }
     }
 }

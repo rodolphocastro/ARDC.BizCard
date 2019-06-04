@@ -8,7 +8,7 @@ using ZXing.Mobile;
 
 namespace ARDC.BizCard.Droid.Activities
 {
-    [Activity(Label = "@string/action_read_card", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "@string/action_read_card", Theme = "@style/AppTheme.NoActionBar", NoHistory = true)]
     public class QRScannerView : MvxAppCompatActivity<QrCodeScannerViewModel>
     {
         public MobileBarcodeScanner Scanner { get; private set; }
@@ -48,8 +48,8 @@ namespace ARDC.BizCard.Droid.Activities
         {
             if (result != null && !string.IsNullOrEmpty(result.Text))
             {
-                ViewModel?.ReadCardCommand.Execute(result.Text);
                 Scanner.Cancel();
+                ViewModel?.ReadCardCommand.Execute(result.Text);
             }
             else
             {

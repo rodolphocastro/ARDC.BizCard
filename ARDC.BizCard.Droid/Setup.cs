@@ -1,9 +1,10 @@
 ﻿using Android.Support.Design.Button;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
-using Android.Widget;
+using Android.Support.V7.Widget;
 using ARDC.BizCard.Core;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Plugin;
 using MvvmCross.ViewModels;
 using System.Collections.Generic;
@@ -22,10 +23,13 @@ namespace ARDC.BizCard.Droid
             typeof(NavigationView).Assembly,
             typeof(CoordinatorLayout).Assembly,
             typeof(FloatingActionButton).Assembly,
-            typeof(Toolbar).Assembly,
+            typeof(Android.Widget.Toolbar).Assembly,
             typeof(NestedScrollView).Assembly,
             typeof(TextInputEditText).Assembly,
-            typeof(MaterialButton).Assembly
+            typeof(MaterialButton).Assembly,
+            typeof(RecyclerView).Assembly,
+            typeof(MvxRecyclerView).Assembly
+
         };
     }
 }

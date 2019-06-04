@@ -32,7 +32,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             await base.Initialize();
 
-            BizCard = await BizCardService.GetCardAsync();
+            BizCard = await BizCardService.GetMyCardAsync();
         }
     }
 }
