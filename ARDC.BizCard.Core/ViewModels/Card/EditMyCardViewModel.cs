@@ -1,4 +1,5 @@
-﻿using ARDC.BizCard.Core.Models;
+﻿using Acr.UserDialogs;
+using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -10,14 +11,17 @@ namespace ARDC.BizCard.Core.ViewModels.Card
 {
     public class EditMyCardViewModel : MvxNavigationViewModel
     {
-        public EditMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
+        public EditMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService, IUserDialogs userDialogsService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService;
+            UserDialogsService = userDialogsService;
 
             NavigateToViewMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
             SaveChangesCommand = new MvxCommand(() => SaveChangesTask = MvxNotifyTask.Create(() => SaveChangesAsync()));
         }
         private IBizCardService BizCardService { get; }
+
+        private IUserDialogs UserDialogsService { get; }
 
         private BizCardContent _bizCard;
 
@@ -50,7 +54,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             await BizCardService.CreateOrEditMyCardAsync(BizCard);
 
-            // TODO: Notificar que as alterações foram salvas
+            UserDialogsService.Toast("Alterações Salvas");
 
             await NavigateToViewMyCardCommand.ExecuteAsync();
         }
