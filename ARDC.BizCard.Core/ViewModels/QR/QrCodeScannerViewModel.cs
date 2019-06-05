@@ -39,9 +39,16 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             var bizCard = await BizCardService.GetCardFromJSONAsync(payload, ct);
 
-            UserDialogsService.Toast("Cartão lido", TimeSpan.FromSeconds(2));
+            if (bizCard.HasData())
+            {
+                UserDialogsService.Toast("Cartão lido", TimeSpan.FromSeconds(2));
 
-            await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
+                await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
+            }
+            else
+            {
+                UserDialogsService.Toast("Não foi processar o QR Code");
+            }            
         }
     }
 }
