@@ -1,6 +1,7 @@
 ﻿using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
 using ARDC.BizCard.Core.ViewModels.Card;
+using ARDC.BizCard.Core.ViewModels.QR;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -16,6 +17,7 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
             BizCardAgendaService = bizCardAgendaService ?? throw new System.ArgumentNullException(nameof(bizCardAgendaService));
 
             BizCards = new MvxObservableCollection<BizCardContent>();
+            AddCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<QrCodeScannerViewModel>());
             DetailCardCommand = new MvxCommand<BizCardContent>((b) => DetailCardTask = MvxNotifyTask.Create(() => NavigateToCardDetails(b)));
         }
 
@@ -36,6 +38,8 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
             get { return _detailCardTask; }
             set { SetProperty(ref _detailCardTask, value); }
         }
+
+        public IMvxAsyncCommand AddCardCommand { get; private set; }
 
         public IMvxCommand<BizCardContent> DetailCardCommand { get; private set; }
 
