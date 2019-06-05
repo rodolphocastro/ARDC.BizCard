@@ -10,54 +10,34 @@
     <TextView
         android:id="@+id/bizcard_nome_completo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"         
         android:layout_alignParentLeft="true"
-        android:gravity="center"
+        android:layout_alignParentTop="true"
         android:text="Cobaiason Josefino da Silva"
-        android:textSize="15sp"
+        android:textSize="13sp"
         android:textStyle="bold"
-        android:drawableLeft="@drawable/account"
-        android:drawablePadding="5sp"
         app:MvxBind="Text NomeCompleto"/>
 
     <TextView
         android:id="@+id/bizcard_cargo"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"         
+        android:layout_height="wrap_content"        
         android:layout_below="@id/bizcard_nome_completo"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
         android:gravity="center"
         android:text="Testador de Testes"
         android:textSize="10sp"
-        android:drawableLeft="@drawable/briefcase"
-        android:drawablePadding="5sp"
         app:MvxBind="Text Cargo"/>
 
     <TextView
         android:id="@+id/bizcard_empresa"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"     
-        android:layout_below="@id/bizcard_nome_completo"
+        android:layout_height="wrap_content"        
+        android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="Aleatoria S.A."
         android:textSize="10sp"
-        app:MvxBind="Text Empresa"/>
-
-    <TextView
-        android:id="@+id/bizcard_label_em"
-        android:layout_width="25dp"
-        android:layout_height="25dp"     
-        android:layout_below="@id/bizcard_nome_completo"
-        android:layout_toRightOf="@id/bizcard_cargo"
-        android:layout_toLeftOf="@id/bizcard_empresa"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="em"
         android:textStyle="italic"
-        android:textSize="10sp"/>
+        app:MvxBind="Text Empresa"/>
 
 </RelativeLayout>
