@@ -1,5 +1,6 @@
 ﻿using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
+using ARDC.BizCard.Core.ViewModels.Card;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -16,18 +17,10 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
 
-            SaveCardCommand = new MvxCommand<string>((p) => SaveCardTask = MvxNotifyTask.Create(() => AddCardToMemoryAsync(p)));
+            ReadCardCommand = new MvxCommand<string>((p) => SaveCardTask = MvxNotifyTask.Create(() => LoadCardFromJsonAsync(p)));
         }
 
         private IBizCardService BizCardService { get; }
-
-        private string _scannerResult;
-
-        public string ScannerResult
-        {
-            get { return _scannerResult; }
-            set { SetProperty(ref _scannerResult, value); }
-        }
 
         private MvxNotifyTask _saveCardTask;
 
@@ -37,21 +30,15 @@ namespace ARDC.BizCard.Core.ViewModels.QR
             set { SetProperty(ref _saveCardTask, value); }
         }
 
-        private BizCardContent _bizCard;
+        public IMvxCommand<string> ReadCardCommand { get; private set; }
 
-        public BizCardContent BizCard
+        private async Task LoadCardFromJsonAsync(string payload, CancellationToken ct = default)
         {
-            get { return _bizCard; }
-            set { SetProperty(ref _bizCard, value); }
-        }
+            var bizCard = await BizCardService.GetCardFromJSONAsync(payload, ct);
 
+            // TODO: Notificar que o cartão foi lido
 
-        public IMvxCommand<string> SaveCardCommand { get; private set; }
-
-        private async Task AddCardToMemoryAsync(string payload, CancellationToken ct = default)
-        {
-            ScannerResult = payload;
-            BizCard = await BizCardService.GetCardsFromJSONAsync(ScannerResult);
+            await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
         }
     }
 }

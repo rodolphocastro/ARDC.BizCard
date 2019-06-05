@@ -60,11 +60,13 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fragments\AgendaView.cs" />
     <Compile Include="Fragments\QRView.cs" />
     <Compile Include="Activities\QRScannerView.cs" />
     <Compile Include="Converters\ByteArrayToImageValueConverter.cs" />
     <Compile Include="Fragments\EditMyBizCardView.cs" />
     <Compile Include="Fragments\LandingView.cs" />
+    <Compile Include="Fragments\ViewCardView.cs" />
     <Compile Include="Fragments\ViewMyBizCardView.cs" />
     <Compile Include="Activities\MainView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -118,6 +120,9 @@
     <PackageReference Include="MvvmCross.Droid.Support.V7.AppCompat">
       <Version>6.3.0</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Droid.Support.V7.RecyclerView">
+      <Version>6.3.0</Version>
+    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>6.3.0</Version>
     </PackageReference>
@@ -131,6 +136,9 @@
       <Version>28.0.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
+      <Version>28.0.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView">
       <Version>28.0.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
@@ -150,12 +158,12 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\edit_biz_card.axml">
+    <AndroidResource Include="Resources\layout\my_card_edit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\view_biz_card.axml">
+    <AndroidResource Include="Resources\layout\my_card_view.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -198,6 +206,30 @@
     <AndroidResource Include="Resources\layout\qr_code.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pencil.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\card_view.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\plus.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\agenda.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\card_template.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\qrcode_scan.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

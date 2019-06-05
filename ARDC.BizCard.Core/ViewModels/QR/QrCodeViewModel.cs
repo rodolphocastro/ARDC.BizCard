@@ -42,7 +42,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             await base.Initialize();
 
-            string cardJson = await BizCardService.GetCardAsJSONAsync();
+            string cardJson = await BizCardService.GetMyCardAsJSONAsync();
 
             if (!string.IsNullOrEmpty(cardJson))
                 QrBytes = await QrCodeService.CreateQRCode(cardJson);

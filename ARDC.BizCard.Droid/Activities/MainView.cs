@@ -41,17 +41,17 @@ namespace ARDC.BizCard.Droid.Activities
             int id = item.ItemId;
             switch (id)
             {
-                case (Resource.Id.action_edit_card):
-                    ViewModel.NavigateToEditCommand.Execute();
-                    break;
-                case (Resource.Id.action_view_card):
-                    ViewModel.NavigateToCardCommand.Execute();
+                case (Resource.Id.action_my_card):
+                    ViewModel.NavigateToMyCardCommand.Execute();
                     break;
                 case (Resource.Id.action_qrcode):
                     ViewModel.NavigateToQrCommand.Execute();
                     break;
                 case (Resource.Id.action_read_card):
                     ViewModel.NavigateToReadQrCommand.Execute();
+                    break;
+                case (Resource.Id.action_agenda):
+                    ViewModel.NavigateToAgendaCommand.Execute();
                     break;
                 default:
                     break;
@@ -63,6 +63,7 @@ namespace ARDC.BizCard.Droid.Activities
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }

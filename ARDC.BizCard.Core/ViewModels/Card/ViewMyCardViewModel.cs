@@ -13,12 +13,12 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         public ViewMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService;
-            NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
+            NavigateToEditMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<EditMyCardViewModel>());
         }
 
         private IBizCardService BizCardService { get; }
 
-        public IMvxAsyncCommand NavigateToHomeCommand { get; private set; }
+        public IMvxAsyncCommand NavigateToEditMyCardCommand { get; private set; }
 
         private BizCardContent _bizCard;
 
@@ -32,7 +32,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             await base.Initialize();
 
-            BizCard = await BizCardService.GetCardAsync();
+            BizCard = await BizCardService.GetMyCardAsync();
         }
     }
 }

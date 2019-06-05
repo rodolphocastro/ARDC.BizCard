@@ -1,9 +1,11 @@
 <resources>
   <string name="app_name">Meu Cartão de Visitas</string>
   <!-- Ações -->
+  <string name="action_my_card">Meu Cartão</string>
   <string name="action_edit_card">Configurar Cartão</string>
   <string name="action_view_card">Exibir Cartão</string>
   <string name="action_read_card">Ler Cartão</string>
+  <string name="action_agenda">Cartões</string>
   <string name="action_settings">Configurações</string>
   <string name="action_share">Compartilhar meu Cartão (Não Disponível)</string>
   <string name="action_qrcode">QR Code</string>
@@ -30,4 +32,12 @@
   <!-- Elementos do QR Code -->
   <string name="qr_loading">Gerando QR Code, aguarde</string>
   <string name="qr_welcome">Este é o QR Code de seu cartão!</string>
+  <!-- Elementos do Leitor de QR Code -->
+  <string name="scan_top_text">Leia o QR Code exibido na tela do outro dispositivo</string>
+  <string name="scan_bottom_text">Aguardando QR Code</string>
+  <string name="scan_sucess">Dados de contato:</string>
+  <string name="scan_error">Infelizmente não foi possível ler o QR Code, tente novamente</string>
+  <!-- Elementos da Agenda de Cartões -->
+  <string name="agenda_loading">Carregando sua Agenda...</string>
+  <string name="agenda_empty">Parece que sua agenda está vazia. Procure novos contatos e adicione seus cartões à Agenda!</string>
 </resources>

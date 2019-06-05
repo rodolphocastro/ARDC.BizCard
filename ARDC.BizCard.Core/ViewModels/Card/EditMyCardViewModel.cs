@@ -14,7 +14,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             BizCardService = bizCardService;
 
-            NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
+            NavigateToViewMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
             SaveChangesCommand = new MvxCommand(() => SaveChangesTask = MvxNotifyTask.Create(() => SaveChangesAsync()));
         }
         private IBizCardService BizCardService { get; }
@@ -35,7 +35,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _saveChangesTask, value); }
         }
 
-        public IMvxAsyncCommand NavigateToHomeCommand { get; private set; }
+        public IMvxAsyncCommand NavigateToViewMyCardCommand { get; private set; }
 
         public IMvxCommand SaveChangesCommand { get; private set; }
 
@@ -43,12 +43,16 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             await base.Initialize();
 
-            BizCard = await BizCardService.GetCardAsync();
+            BizCard = await BizCardService.GetMyCardAsync();
         }
 
         private async Task SaveChangesAsync()
         {
-            await BizCardService.CreateOrEditCardAsync(BizCard);
+            await BizCardService.CreateOrEditMyCardAsync(BizCard);
+
+            // TODO: Notificar que as alterações foram salvas
+
+            await NavigateToViewMyCardCommand.ExecuteAsync();
         }
     }
 }

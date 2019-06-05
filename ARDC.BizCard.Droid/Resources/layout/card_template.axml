@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/bizcard_nome_completo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"         
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Cobaiason Josefino da Silva"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:MvxBind="Text NomeCompleto"/>
+
+    <TextView
+        android:id="@+id/bizcard_cargo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_below="@id/bizcard_nome_completo"
+        android:gravity="center"
+        android:text="Testador de Testes"
+        android:textSize="10sp"
+        app:MvxBind="Text Cargo"/>
+
+    <TextView
+        android:id="@+id/bizcard_empresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="Aleatoria S.A."
+        android:textSize="10sp"
+        android:textStyle="italic"
+        app:MvxBind="Text Empresa"/>
+
+</RelativeLayout>
