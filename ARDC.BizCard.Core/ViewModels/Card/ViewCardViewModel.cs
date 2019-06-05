@@ -1,5 +1,6 @@
 ﻿using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
+using ARDC.BizCard.Core.ViewModels.Agenda;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -47,7 +48,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             // TODO: Pedir confirmação do usuário
             await BizCardAgendaService.AddCardAsync(BizCard, ct);
-            // TODO: Navegar à lista de Cartões
+            await NavigationService.Navigate<AgendaViewModel>();
         }
     }
 }
