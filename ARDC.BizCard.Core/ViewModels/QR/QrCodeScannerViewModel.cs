@@ -1,4 +1,5 @@
-﻿using ARDC.BizCard.Core.Models;
+﻿using Acr.UserDialogs;
+using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
 using ARDC.BizCard.Core.ViewModels.Card;
 using MvvmCross.Commands;
@@ -13,14 +14,16 @@ namespace ARDC.BizCard.Core.ViewModels.QR
 {
     public class QrCodeScannerViewModel : MvxNavigationViewModel
     {
-        public QrCodeScannerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
+        public QrCodeScannerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService, IUserDialogs userDialogsService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
+            UserDialogsService = userDialogsService ?? throw new ArgumentNullException(nameof(userDialogsService));
 
             ReadCardCommand = new MvxCommand<string>((p) => SaveCardTask = MvxNotifyTask.Create(() => LoadCardFromJsonAsync(p)));
         }
 
         private IBizCardService BizCardService { get; }
+        private IUserDialogs UserDialogsService { get; }
 
         private MvxNotifyTask _saveCardTask;
 
@@ -36,7 +39,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             var bizCard = await BizCardService.GetCardFromJSONAsync(payload, ct);
 
-            // TODO: Notificar que o cartão foi lido
+            UserDialogsService.Toast("Cartão lido", TimeSpan.FromSeconds(2));
 
             await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
         }
