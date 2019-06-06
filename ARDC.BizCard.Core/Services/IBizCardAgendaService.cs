@@ -12,5 +12,7 @@ namespace ARDC.BizCard.Core.Services
         Task RemoveCardAsync(BizCardContent card, CancellationToken ct = default);
 
         Task<IList<BizCardContent>> GetCardsAsync(CancellationToken ct = default);
+
+        Task<BizCardContent> GetCardByName(string name, CancellationToken ct = default);
     }
 }

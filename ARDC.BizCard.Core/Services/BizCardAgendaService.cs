@@ -45,6 +45,14 @@ namespace ARDC.BizCard.Core.Services
             await UpdateCache();
         }
 
+        public async Task<BizCardContent> GetCardByName(string name, CancellationToken ct)
+        {
+            if (BizCards == null)
+                await InitializeCollection();
+
+            return BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper());
+        }
+
         private async Task InitializeCollection()
         {
             BizCards = new List<BizCardContent>();
@@ -59,5 +67,6 @@ namespace ARDC.BizCard.Core.Services
             if (BizCards != null)
                 await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
         }
+        
     }
 }
