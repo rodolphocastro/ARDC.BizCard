@@ -9,6 +9,8 @@ namespace ARDC.BizCard.Core.Services
         Task<T> RecoverObjectAsync<T>(string key, CacheType source = CacheType.Memory);
 
         Task InvalidateObjectAsync(string key, CacheType source = CacheType.Memory);
+
+        Task<byte[]> RecoverOrFetchImageAsync(string url, CacheType source);
     }
 
     public enum CacheType
