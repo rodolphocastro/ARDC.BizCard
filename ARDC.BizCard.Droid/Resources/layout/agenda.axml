@@ -8,10 +8,50 @@
     android:padding="10dp"
     tools:showIn="@layout/activity_main">
     
+    <LinearLayout
+        android:id="@+id/header_carga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <!-- Indicadores de Carregando -->
+        <ProgressBar
+            android:id="@+id/my_progressBar"  
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:indeterminate="true"
+            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/agenda_loading"
+            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/agenda_welcome"
+            android:textStyle="bold"
+            app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
+
+    </LinearLayout>
+
     <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView        
         android:id="@+id/list_cards" 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent"        
+        android:layout_below="@id/header_carga"
         android:paddingBottom="60dp"
         android:clipToPadding="false"
         android:scrollbars="vertical"
