@@ -24,7 +24,7 @@ namespace ARDC.BizCard.Core.Services
             if (BizCards == null)
                 await InitializeCollection();
 
-            BizCards.Add(newCard);  // TODO: Validar duplicatas
+            BizCards.Add(newCard);
             await UpdateCache();
         }
 
@@ -41,8 +41,18 @@ namespace ARDC.BizCard.Core.Services
             if (BizCards == null)
                 await InitializeCollection();
 
-            BizCards.Remove(card); // TODO: Validar casos inexistentes
+            if (await GetCardByName(card.NomeCompleto, ct) != null)
+                BizCards.Remove(card);
+
             await UpdateCache();
+        }
+
+        public async Task<BizCardContent> GetCardByName(string name, CancellationToken ct)
+        {
+            if (BizCards == null)
+                await InitializeCollection();
+
+            return BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper());
         }
 
         private async Task InitializeCollection()
@@ -59,5 +69,6 @@ namespace ARDC.BizCard.Core.Services
             if (BizCards != null)
                 await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
         }
+        
     }
 }
