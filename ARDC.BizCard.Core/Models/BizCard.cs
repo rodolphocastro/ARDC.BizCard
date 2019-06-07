@@ -44,11 +44,14 @@ namespace ARDC.BizCard.Core.Models
 
         public string ToGravatarURI()
         {
-            if (string.IsNullOrWhiteSpace(Email))
-                return string.Empty;
-
             string baseAddr = @"https://www.gravatar.com/avatar/";
             StringBuilder sb = new StringBuilder(baseAddr);
+
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                sb.Append(@".jpg?s=250&d=identicon");
+                return sb.ToString();
+            }
 
             MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
             byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(Email));
