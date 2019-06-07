@@ -18,6 +18,7 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
 
             BizCards = new MvxObservableCollection<BizCardContent>();
             AddCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<QrCodeScannerViewModel>());
+            DeleteCardCommand = new MvxCommand<BizCardContent>((b) => DeleteCardTask = MvxNotifyTask.Create(() => DeleteCardAsync(b)));
             DetailCardCommand = new MvxCommand<BizCardContent>((b) => DetailCardTask = MvxNotifyTask.Create(() => NavigateToCardDetails(b)));
         }
 
@@ -39,9 +40,19 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
             set { SetProperty(ref _detailCardTask, value); }
         }
 
+        private MvxNotifyTask _deleteCardTask;
+
+        public MvxNotifyTask DeleteCardTask
+        {
+            get { return _deleteCardTask; }
+            set { SetProperty(ref _deleteCardTask, value); }
+        }
+
         public IMvxAsyncCommand AddCardCommand { get; private set; }
 
         public IMvxCommand<BizCardContent> DetailCardCommand { get; private set; }
+
+        public IMvxCommand<BizCardContent> DeleteCardCommand { get; private set; }
 
         public override async Task Initialize()
         {
@@ -55,6 +66,12 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
         private async Task NavigateToCardDetails(BizCardContent bizcard)
         {
             await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizcard);
+        }
+
+        private async Task DeleteCardAsync(BizCardContent bizCard)
+        {
+            await BizCardAgendaService.RemoveCardAsync(bizCard);
+            BizCards.ReplaceWith(await BizCardAgendaService.GetCardsAsync());
         }
     }
 }
