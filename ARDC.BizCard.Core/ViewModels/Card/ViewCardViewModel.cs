@@ -1,4 +1,5 @@
-﻿using ARDC.BizCard.Core.Models;
+﻿using Acr.UserDialogs;
+using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
 using ARDC.BizCard.Core.ViewModels.Agenda;
 using MvvmCross.Commands;
@@ -13,13 +14,17 @@ namespace ARDC.BizCard.Core.ViewModels.Card
 {
     public class ViewCardViewModel : MvxNavigationViewModel<BizCardContent>
     {
-        public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardAgendaService bizCardAgendaService) : base(logProvider, navigationService)
+        public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardAgendaService bizCardAgendaService, IUserDialogs userDialogsService) : base(logProvider, navigationService)
         {
             BizCardAgendaService = bizCardAgendaService ?? throw new ArgumentNullException(nameof(bizCardAgendaService));
+            UserDialogsService = userDialogsService ?? throw new ArgumentNullException(nameof(userDialogsService));
+
             AddCardToAgendaCommand = new MvxCommand(() => AddCardTask = MvxNotifyTask.Create(() => AddCardAsync()));
         }
 
         private IBizCardAgendaService BizCardAgendaService { get; }
+
+        private IUserDialogs UserDialogsService { get; }
 
         private BizCardContent _bizCard;
 
@@ -46,9 +51,19 @@ namespace ARDC.BizCard.Core.ViewModels.Card
 
         private async Task AddCardAsync(CancellationToken ct = default)
         {
-            // TODO: Pedir confirmação do usuário
-            await BizCardAgendaService.AddCardAsync(BizCard, ct);
-            await NavigationService.Navigate<AgendaViewModel>();
+            if (await BizCardAgendaService.GetCardByName(BizCard.NomeCompleto) != null)
+            {
+                if (await UserDialogsService.ConfirmAsync("Já existe um cartão com este nome, deseja adiciona-lo novamente?", "Cartão Repetido", "Adicionar"))
+                {
+                    await BizCardAgendaService.AddCardAsync(BizCard, ct);
+                    await NavigationService.Navigate<AgendaViewModel>();
+                }
+            }
+            else
+            {
+                await BizCardAgendaService.AddCardAsync(BizCard, ct);
+                await NavigationService.Navigate<AgendaViewModel>();
+            }            
         }
     }
 }

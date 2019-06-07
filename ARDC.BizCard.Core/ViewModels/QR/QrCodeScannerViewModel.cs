@@ -36,9 +36,8 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             var bizCard = await BizCardService.GetCardFromJSONAsync(payload, ct);
 
-            // TODO: Notificar que o cartão foi lido
-
-            await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
+            if (bizCard.HasData())
+                await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
         }
     }
 }

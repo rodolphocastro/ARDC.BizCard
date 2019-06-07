@@ -9,7 +9,7 @@ namespace ARDC.BizCard.Core.Services
         public Task<byte[]> CreateQRCode(string payload, CancellationToken ct)
         {
             var codeGenerator = new QRCodeGenerator();
-            QRCodeData qrData = codeGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.M, true);
+            QRCodeData qrData = codeGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.L, true);
             BitmapByteQRCode qrCode = new BitmapByteQRCode(qrData);
             byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(10);
 

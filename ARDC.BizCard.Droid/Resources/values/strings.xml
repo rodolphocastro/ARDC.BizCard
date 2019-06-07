@@ -39,5 +39,6 @@
   <string name="scan_error">Infelizmente não foi possível ler o QR Code, tente novamente</string>
   <!-- Elementos da Agenda de Cartões -->
   <string name="agenda_loading">Carregando sua Agenda...</string>
+  <string name="agenda_welcome">Estes são os cartões que você possui!</string>
   <string name="agenda_empty">Parece que sua agenda está vazia. Procure novos contatos e adicione seus cartões à Agenda!</string>
 </resources>
