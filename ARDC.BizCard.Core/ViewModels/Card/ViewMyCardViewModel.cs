@@ -4,7 +4,6 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels.Card
@@ -43,8 +42,8 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             await base.Initialize();
 
             BizCard = await BizCardService.GetMyCardAsync();
-            GravatarBytes = BizCard.ToGravatarURI();
-
+            if (!string.IsNullOrWhiteSpace(BizCard.Email))
+                GravatarBytes = await BizCardService.GetGravatarAsync();
         }
     }
 }
