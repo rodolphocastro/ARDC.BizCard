@@ -1,4 +1,8 @@
-﻿namespace ARDC.BizCard.Core.Models
+﻿using System;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace ARDC.BizCard.Core.Models
 {
     public class BizCardContent
     {
@@ -36,6 +40,22 @@
                 !string.IsNullOrWhiteSpace(Cargo) ||
                 !string.IsNullOrWhiteSpace(Endereco)
             );
+        }
+
+        public Uri ToGravatarURI()
+        {
+            string baseAddr = @"https://www.gravatar.com/avatar/";
+            StringBuilder sb = new StringBuilder(baseAddr);
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] retVal = md5.ComputeHash(Encoding.Unicode.GetBytes("TextToHash"));
+                for (int i = 0; i < retVal.Length; i++)
+                    sb.Append(retVal[i].ToString("x2"));
+            }
+
+            sb.Append(".jpg?s=150");
+
+            return new Uri(sb.ToString());
         }
     }
 }
