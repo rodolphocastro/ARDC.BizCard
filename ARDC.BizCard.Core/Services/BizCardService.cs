@@ -58,5 +58,13 @@ namespace ARDC.BizCard.Core.Services
                 throw;
             }
         }
+
+        public async Task<byte[]> GetGravatarAsync(CancellationToken ct)
+        {
+            if (MyBizCard == null)
+                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+
+            return await CacheService.RecoverOrFetchImageAsync(MyBizCard.ToGravatarURI(), CacheType.Local);
+        }
     }
 }
