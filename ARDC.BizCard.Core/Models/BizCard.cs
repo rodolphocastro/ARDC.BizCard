@@ -42,20 +42,25 @@ namespace ARDC.BizCard.Core.Models
             );
         }
 
-        public Uri ToGravatarURI()
+        public string ToGravatarURI()
         {
+            if (string.IsNullOrWhiteSpace(Email))
+                return string.Empty;
+
             string baseAddr = @"https://www.gravatar.com/avatar/";
             StringBuilder sb = new StringBuilder(baseAddr);
-            using (MD5 md5 = MD5.Create())
+
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(Email));
+
+            for (int i = 0; i < bytes.Length; i++)
             {
-                byte[] retVal = md5.ComputeHash(Encoding.Unicode.GetBytes("TextToHash"));
-                for (int i = 0; i < retVal.Length; i++)
-                    sb.Append(retVal[i].ToString("x2"));
+                sb.Append(bytes[i].ToString("x2"));
             }
 
-            sb.Append(".jpg?s=150");
+            sb.Append(".jpg?s=250");
 
-            return new Uri(sb.ToString());
+            return sb.ToString();
         }
     }
 }
