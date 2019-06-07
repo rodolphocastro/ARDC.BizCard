@@ -58,7 +58,7 @@ namespace ARDC.BizCard.Core.Models
                 sb.Append(bytes[i].ToString("x2"));
             }
 
-            sb.Append(".jpg?s=250");
+            sb.Append(@".jpg?s=250&d=identicon");
 
             return sb.ToString();
         }
