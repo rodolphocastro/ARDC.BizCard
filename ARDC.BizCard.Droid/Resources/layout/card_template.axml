@@ -37,7 +37,7 @@
         android:gravity="center"
         android:text="Aleatoria S.A."
         android:textSize="10sp"
-        android:textStyle="italic"
+        android:textStyle="bold"
         app:MvxBind="Text Empresa"/>
 
 </RelativeLayout>
