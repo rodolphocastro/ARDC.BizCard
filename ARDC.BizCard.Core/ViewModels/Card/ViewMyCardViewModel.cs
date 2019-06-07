@@ -4,6 +4,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels.Card
@@ -28,11 +29,22 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _bizCard, value); }
         }
 
+        private byte[] _gravatarBytes;
+
+        public byte[] GravatarBytes
+        {
+            get { return _gravatarBytes; }
+            set { SetProperty(ref _gravatarBytes, value); }
+        }
+
+
         public override async Task Initialize()
         {
             await base.Initialize();
 
             BizCard = await BizCardService.GetMyCardAsync();
+            GravatarBytes = BizCard.ToGravatarURI();
+
         }
     }
 }
