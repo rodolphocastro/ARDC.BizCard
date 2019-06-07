@@ -1,4 +1,5 @@
-﻿using ARDC.BizCard.Core.Models;
+﻿using Acr.UserDialogs;
+using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
 using ARDC.BizCard.Core.ViewModels.Card;
 using ARDC.BizCard.Core.ViewModels.QR;
@@ -12,9 +13,10 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
 {
     public class AgendaViewModel : MvxNavigationViewModel
     {
-        public AgendaViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardAgendaService bizCardAgendaService) : base(logProvider, navigationService)
+        public AgendaViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardAgendaService bizCardAgendaService, IUserDialogs userDialogsService) : base(logProvider, navigationService)
         {
             BizCardAgendaService = bizCardAgendaService ?? throw new System.ArgumentNullException(nameof(bizCardAgendaService));
+            UserDialogsService = userDialogsService ?? throw new System.ArgumentNullException(nameof(userDialogsService));
 
             BizCards = new MvxObservableCollection<BizCardContent>();
             AddCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<QrCodeScannerViewModel>());
@@ -23,6 +25,7 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
         }
 
         private IBizCardAgendaService BizCardAgendaService { get; }
+        private IUserDialogs UserDialogsService { get; }
 
         private MvxObservableCollection<BizCardContent> _bizCards;
 
@@ -70,8 +73,11 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
 
         private async Task DeleteCardAsync(BizCardContent bizCard)
         {
-            await BizCardAgendaService.RemoveCardAsync(bizCard);
-            BizCards.ReplaceWith(await BizCardAgendaService.GetCardsAsync());
+            if (await UserDialogsService.ConfirmAsync("Deseja remover este cartão?", bizCard.NomeCompleto))
+            {
+                await BizCardAgendaService.RemoveCardAsync(bizCard);
+                BizCards.ReplaceWith(await BizCardAgendaService.GetCardsAsync());
+            }
         }
     }
 }
