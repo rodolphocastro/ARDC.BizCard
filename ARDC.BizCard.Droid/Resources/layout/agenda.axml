@@ -16,7 +16,7 @@
         android:clipToPadding="false"
         android:scrollbars="vertical"
         app:MvxItemTemplate="@layout/card_template"
-        app:MvxBind="ItemsSource BizCards; ItemClick DetailCardCommand"/>
+        app:MvxBind="ItemsSource BizCards; ItemClick DetailCardCommand; ItemLongClick DeleteCardCommand"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
