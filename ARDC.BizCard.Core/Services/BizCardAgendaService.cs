@@ -55,6 +55,11 @@ namespace ARDC.BizCard.Core.Services
             return BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper());
         }
 
+        public async Task<byte[]> GetGravatarAsync(BizCardContent bizCard, CancellationToken ct)
+        {
+            return await CacheService.RecoverOrFetchImageAsync(bizCard.ToGravatarURI(), CacheType.Local);
+        }
+
         private async Task InitializeCollection()
         {
             BizCards = new List<BizCardContent>();
