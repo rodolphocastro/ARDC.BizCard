@@ -42,11 +42,26 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _addCardTask, value); }
         }
 
+        private byte[] _gravatarBytes;
+
+        public byte[] GravatarBytes
+        {
+            get { return _gravatarBytes; }
+            set { SetProperty(ref _gravatarBytes, value); }
+        }
+
         public IMvxCommand AddCardToAgendaCommand { get; private set; }
 
         public override void Prepare(BizCardContent parameter)
         {
             BizCard = parameter;
+        }
+
+        public override async Task Initialize()
+        {
+            await base.Initialize();
+
+            GravatarBytes = await BizCardAgendaService.GetGravatarAsync(BizCard);
         }
 
         private async Task AddCardAsync(CancellationToken ct = default)
