@@ -40,6 +40,13 @@
 
             <!-- Campos do Cartão -->
                     
+            <ImageView
+                android:id="@+id/bizcard_gravatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes); Visibility Visibility(InitializeTask.IsCompleted)"/>
+
             <TextView
                 android:id="@+id/bizcard_nome_completo"
                 android:layout_width="wrap_content"

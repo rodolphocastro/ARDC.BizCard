@@ -14,5 +14,7 @@ namespace ARDC.BizCard.Core.Services
         Task<IList<BizCardContent>> GetCardsAsync(CancellationToken ct = default);
 
         Task<BizCardContent> GetCardByName(string name, CancellationToken ct = default);
+
+        Task<byte[]> GetGravatarAsync(BizCardContent bizCard, CancellationToken ct = default);
     }
 }

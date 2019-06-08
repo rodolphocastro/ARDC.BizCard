@@ -17,7 +17,34 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <!-- Indicadores de Carregando -->
+            <ProgressBar
+                android:id="@+id/my_progressBar"  
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:indeterminate="true"
+                app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/view_loading"
+                app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
             <!-- Campos do Cartão -->
+
+            <ImageView
+                android:id="@+id/bizcard_gravatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes); Visibility Visibility(InitializeTask.IsCompleted)"/>
                     
             <TextView
                 android:id="@+id/bizcard_nome_completo"

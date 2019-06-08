@@ -28,11 +28,22 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _bizCard, value); }
         }
 
+        private byte[] _gravatarBytes;
+
+        public byte[] GravatarBytes
+        {
+            get { return _gravatarBytes; }
+            set { SetProperty(ref _gravatarBytes, value); }
+        }
+
+
         public override async Task Initialize()
         {
             await base.Initialize();
 
             BizCard = await BizCardService.GetMyCardAsync();
+            if (!string.IsNullOrWhiteSpace(BizCard.Email))
+                GravatarBytes = await BizCardService.GetGravatarAsync();
         }
     }
 }
