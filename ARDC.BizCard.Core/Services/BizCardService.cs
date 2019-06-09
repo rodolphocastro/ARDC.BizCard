@@ -19,6 +19,11 @@ namespace ARDC.BizCard.Core.Services
             CacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
 
+        public async Task InitializeAsync()
+        {
+            MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+        }
+
         public async Task CreateOrEditMyCardAsync(BizCardContent bizCard, CancellationToken ct)
         {
             MyBizCard = bizCard;
@@ -26,20 +31,14 @@ namespace ARDC.BizCard.Core.Services
             await CacheService.StoreObjectAsync(MyBizCardCacheKey, MyBizCard, CacheType.Local);
         }
 
-        public async Task<BizCardContent> GetMyCardAsync(CancellationToken ct)
+        public Task<BizCardContent> GetMyCardAsync(CancellationToken ct)
         {
-            if (MyBizCard == null)
-                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
-
-            return MyBizCard ?? new BizCardContent();
+            return Task.FromResult(MyBizCard ?? new BizCardContent());
         }
 
-        public async Task<string> GetMyCardAsJSONAsync(CancellationToken ct)
+        public Task<string> GetMyCardAsJSONAsync(CancellationToken ct)
         {
-            if (MyBizCard == null)
-                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
-
-            return JsonConvert.SerializeObject(MyBizCard);
+            return Task.FromResult(JsonConvert.SerializeObject(MyBizCard));
         }
 
         public Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct)
@@ -61,10 +60,7 @@ namespace ARDC.BizCard.Core.Services
 
         public async Task<byte[]> GetGravatarAsync(CancellationToken ct)
         {
-            if (MyBizCard == null)
-                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
-
             return await CacheService.RecoverOrFetchImageAsync(MyBizCard.ToGravatarURI(), CacheType.Local);
-        }
+        }        
     }
 }

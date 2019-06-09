@@ -6,6 +6,8 @@ namespace ARDC.BizCard.Core.Services
 {
     public interface IBizCardService
     {
+        Task InitializeAsync();
+
         Task CreateOrEditMyCardAsync(BizCardContent bizCard, CancellationToken ct = default);
 
         Task<BizCardContent> GetMyCardAsync(CancellationToken ct = default);
