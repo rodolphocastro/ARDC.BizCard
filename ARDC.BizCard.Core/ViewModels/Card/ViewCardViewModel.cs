@@ -20,6 +20,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             UserDialogsService = userDialogsService ?? throw new ArgumentNullException(nameof(userDialogsService));
 
             AddCardToAgendaCommand = new MvxCommand(() => AddCardTask = MvxNotifyTask.Create(() => AddCardAsync()));
+            LoadGravatarCommand = new MvxCommand(() => GravatarTask = MvxNotifyTask.Create(() => LoadGravatarAsync()));
         }
 
         private IBizCardAgendaService BizCardAgendaService { get; }
@@ -42,6 +43,14 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _addCardTask, value); }
         }
 
+        private MvxNotifyTask _gravatarTask;
+
+        public MvxNotifyTask GravatarTask
+        {
+            get { return _gravatarTask; }
+            set { SetProperty(ref _gravatarTask, value); }
+        }
+
         private byte[] _gravatarBytes;
 
         public byte[] GravatarBytes
@@ -52,6 +61,8 @@ namespace ARDC.BizCard.Core.ViewModels.Card
 
         public IMvxCommand AddCardToAgendaCommand { get; private set; }
 
+        public IMvxCommand LoadGravatarCommand { get; private set; }
+
         public override void Prepare(BizCardContent parameter)
         {
             BizCard = parameter;
@@ -61,7 +72,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             await base.Initialize();
 
-            GravatarBytes = await BizCardAgendaService.GetGravatarAsync(BizCard);
+            LoadGravatarCommand.Execute();
         }
 
         private async Task AddCardAsync(CancellationToken ct = default)
@@ -79,6 +90,12 @@ namespace ARDC.BizCard.Core.ViewModels.Card
                 await BizCardAgendaService.AddCardAsync(BizCard, ct);
                 await NavigationService.Navigate<AgendaViewModel>();
             }            
+        }
+
+        private async Task LoadGravatarAsync(CancellationToken ct = default)
+        {
+            if (!string.IsNullOrWhiteSpace(BizCard.Email))
+                GravatarBytes = await BizCardAgendaService.GetGravatarAsync(BizCard);
         }
     }
 }

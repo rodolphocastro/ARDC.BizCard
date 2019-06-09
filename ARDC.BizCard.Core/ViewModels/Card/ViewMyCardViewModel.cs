@@ -4,6 +4,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels.Card
@@ -14,11 +15,14 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             BizCardService = bizCardService;
             NavigateToEditMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<EditMyCardViewModel>());
+            LoadGravatarCommand = new MvxCommand(() => GravatarTask = MvxNotifyTask.Create(() => LoadGravatarAsync()));
         }
 
         private IBizCardService BizCardService { get; }
 
         public IMvxAsyncCommand NavigateToEditMyCardCommand { get; private set; }
+
+        public IMvxCommand LoadGravatarCommand { get; private set; }
 
         private BizCardContent _bizCard;
 
@@ -36,14 +40,27 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _gravatarBytes, value); }
         }
 
+        private MvxNotifyTask _gravatarTask;
+
+        public MvxNotifyTask GravatarTask
+        {
+            get { return _gravatarTask; }
+            set { SetProperty(ref _gravatarTask, value); }
+        }
 
         public override async Task Initialize()
         {
             await base.Initialize();
 
             BizCard = await BizCardService.GetMyCardAsync();
+
+            LoadGravatarCommand.Execute();
+        }
+
+        private async Task LoadGravatarAsync(CancellationToken ct = default)
+        {
             if (!string.IsNullOrWhiteSpace(BizCard.Email))
-                GravatarBytes = await BizCardService.GetGravatarAsync();
+                GravatarBytes = await BizCardService.GetGravatarAsync(ct);
         }
     }
 }
