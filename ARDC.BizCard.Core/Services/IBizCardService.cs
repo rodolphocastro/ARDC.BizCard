@@ -13,5 +13,7 @@ namespace ARDC.BizCard.Core.Services
         Task<string> GetMyCardAsJSONAsync(CancellationToken ct = default);
 
         Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct = default);
+
+        Task<byte[]> GetGravatarAsync(CancellationToken ct = default);
     }
 }

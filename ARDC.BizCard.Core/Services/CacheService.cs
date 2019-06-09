@@ -82,5 +82,38 @@ namespace ARDC.BizCard.Core.Services
                     break;
             }
         }
+
+        public async Task<byte[]> RecoverOrFetchImageAsync(string url, CacheType source)
+        {
+            try
+            {
+                byte[] cacheObject;
+
+                switch (source)
+                {
+                    case CacheType.Local:
+                        cacheObject = await BlobCache.LocalMachine.DownloadUrl(url);
+                        break;
+                    case CacheType.User:
+                        cacheObject = await BlobCache.UserAccount.DownloadUrl(url);
+                        break;
+                    case CacheType.Secure:
+                        cacheObject = await BlobCache.Secure.DownloadUrl(url);
+                        break;
+                    case CacheType.Memory:
+                        cacheObject = await BlobCache.InMemory.DownloadUrl(url);
+                        break;
+                    default:
+                        cacheObject = default;
+                        break;
+                }
+
+                return cacheObject;
+            }
+            catch (KeyNotFoundException)
+            {
+                return default;
+            }
+        }
     }
 }

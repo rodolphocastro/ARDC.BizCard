@@ -17,7 +17,51 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <!-- Indicadores de Carregando -->
+            <ProgressBar
+                android:id="@+id/my_progressBar"  
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:indeterminate="true"
+                app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/view_loading"
+                app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
             <!-- Campos do Cartão -->
+
+            <FrameLayout
+                android:id="@+id/bizcard_frame_gravatar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center">
+                
+                <ProgressBar
+                    android:id="@+id/bizcard_gravatar_progress" 
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    app:MvxBind="Visibility Visibility(GravatarTask.IsNotCompleted)"
+                    tools:visibility="visible"/>
+
+                <ImageView
+                    android:id="@+id/bizcard_gravatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes)"/>
+
+            </FrameLayout>
                     
             <TextView
                 android:id="@+id/bizcard_nome_completo"
