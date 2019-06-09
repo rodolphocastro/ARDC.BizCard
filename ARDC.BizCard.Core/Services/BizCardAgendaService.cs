@@ -60,6 +60,14 @@ namespace ARDC.BizCard.Core.Services
             return await CacheService.RecoverOrFetchImageAsync(bizCard.ToGravatarURI(), CacheType.Local);
         }
 
+        public async Task<bool> IsCardOnAgendaAsync(BizCardContent card, CancellationToken ct)
+        {
+            if (BizCards == null)
+                await InitializeCollection();
+
+            return (await GetCardByName(card.NomeCompleto, ct)) != null;
+        }
+
         private async Task InitializeCollection()
         {
             BizCards = new List<BizCardContent>();
@@ -74,6 +82,5 @@ namespace ARDC.BizCard.Core.Services
             if (BizCards != null)
                 await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
         }
-        
     }
 }
