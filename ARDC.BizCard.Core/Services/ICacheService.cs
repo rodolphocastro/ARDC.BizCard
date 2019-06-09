@@ -4,6 +4,8 @@ namespace ARDC.BizCard.Core.Services
 {
     public interface ICacheService
     {
+        Task InitializeAsync();
+
         Task StoreObjectAsync(string key, object obj, CacheType destination = CacheType.Memory);
 
         Task<T> RecoverObjectAsync<T>(string key, CacheType source = CacheType.Memory);
