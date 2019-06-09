@@ -19,40 +19,33 @@ namespace ARDC.BizCard.Core.Services
             CacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
 
+        public async Task InitializeAsync()
+        {
+            await InitializeCollection();
+        }
+
         public async Task AddCardAsync(BizCardContent newCard, CancellationToken ct)
         {
-            if (BizCards == null)
-                await InitializeCollection();
-
             BizCards.Add(newCard);
             await UpdateCache();
         }
 
-        public async Task<IList<BizCardContent>> GetCardsAsync(CancellationToken ct)
+        public Task<IList<BizCardContent>> GetCardsAsync(CancellationToken ct)
         {
-            if (BizCards == null)
-                await InitializeCollection();
-
-            return BizCards;
+            return Task.FromResult<IList<BizCardContent>>(BizCards);
         }
 
         public async Task RemoveCardAsync(BizCardContent card, CancellationToken ct)
         {
-            if (BizCards == null)
-                await InitializeCollection();
-
             if (await GetCardByName(card.NomeCompleto, ct) != null)
                 BizCards.Remove(card);
 
             await UpdateCache();
         }
 
-        public async Task<BizCardContent> GetCardByName(string name, CancellationToken ct)
+        public Task<BizCardContent> GetCardByName(string name, CancellationToken ct)
         {
-            if (BizCards == null)
-                await InitializeCollection();
-
-            return BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper());
+            return Task.FromResult(BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper()));
         }
 
         public async Task<byte[]> GetGravatarAsync(BizCardContent bizCard, CancellationToken ct)
@@ -74,6 +67,5 @@ namespace ARDC.BizCard.Core.Services
             if (BizCards != null)
                 await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
         }
-        
     }
 }

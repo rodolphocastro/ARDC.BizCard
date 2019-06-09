@@ -7,6 +7,8 @@ namespace ARDC.BizCard.Core.Services
 {
     public interface IBizCardAgendaService
     {
+        Task InitializeAsync();
+
         Task AddCardAsync(BizCardContent newCard, CancellationToken ct = default);
 
         Task RemoveCardAsync(BizCardContent card, CancellationToken ct = default);
