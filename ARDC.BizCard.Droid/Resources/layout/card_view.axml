@@ -39,12 +39,29 @@
 
             <!-- Campos do Cartão -->
 
-            <ImageView
-                android:id="@+id/bizcard_gravatar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes); Visibility Visibility(InitializeTask.IsCompleted)"/>
+            <FrameLayout
+                android:id="@+id/bizcard_frame_gravatar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center">
+                
+                <ProgressBar
+                    android:id="@+id/bizcard_gravatar_progress" 
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    app:MvxBind="Visibility Visibility(GravatarTask.IsNotCompleted)"
+                    tools:visibility="visible"/>
+
+                <ImageView
+                    android:id="@+id/bizcard_gravatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes)"/>
+
+            </FrameLayout>
                     
             <TextView
                 android:id="@+id/bizcard_nome_completo"
