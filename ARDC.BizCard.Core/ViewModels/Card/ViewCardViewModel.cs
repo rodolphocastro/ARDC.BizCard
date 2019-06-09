@@ -59,6 +59,14 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _gravatarBytes, value); }
         }
 
+        private bool _isOnAgenda;
+
+        public bool IsOnAgenda
+        {
+            get { return _isOnAgenda; }
+            set { SetProperty(ref _isOnAgenda, value); }
+        }        
+
         public IMvxCommand AddCardToAgendaCommand { get; private set; }
 
         public IMvxCommand LoadGravatarCommand { get; private set; }
@@ -71,6 +79,8 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         public override async Task Initialize()
         {
             await base.Initialize();
+
+            IsOnAgenda = await BizCardAgendaService.IsCardOnAgendaAsync(BizCard);
 
             LoadGravatarCommand.Execute();
         }
