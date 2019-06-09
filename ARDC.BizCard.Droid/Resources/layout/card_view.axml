@@ -196,6 +196,6 @@
         android:layout_margin="@dimen/fab_margin"        
         android:src="@drawable/plus"
         app:backgroundTint="@android:color/holo_green_dark"
-        app:MvxBind="Click AddCardToAgendaCommand"/>
+        app:MvxBind="Click AddCardToAgendaCommand; Visibility Visibility(!IsOnAgenda)"/>
 
 </RelativeLayout>
