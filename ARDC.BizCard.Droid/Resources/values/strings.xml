@@ -28,7 +28,7 @@
   <string name="edit_loading">Carregando...</string>
   <string name="edit_welcome">Preencha os dados de seu cartão de visita</string>
   <!-- Elementos da Visualização -->
-  <string name="view_loading">Aguarde, estamos carregando seu Cartão</string>
+  <string name="view_loading">Aguarde, estamos carregando o Cartão</string>
   <string name="view_welcome">Este é o seu Cartão!</string>
   <!-- Elementos do QR Code -->
   <string name="qr_loading">Gerando QR Code, aguarde</string>
