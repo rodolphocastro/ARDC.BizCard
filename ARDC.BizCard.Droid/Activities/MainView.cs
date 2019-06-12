@@ -8,10 +8,16 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace ARDC.BizCard.Droid.Activities
 {
+    /// <summary>
+    /// Activity principal do Aplicativo, responsável por hospedar os Fragments de conteúdo.
+    /// </summary>
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-
+        /// <summary>
+        /// Rotina para criação da Activity.
+        /// </summary>
+        /// <param name="savedInstanceState"></param>
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,12 +36,22 @@ namespace ARDC.BizCard.Droid.Activities
             }
         }
 
+        /// <summary>
+        /// Rotina para criação do Menu de Opções.
+        /// </summary>
+        /// <param name="menu">O menu a ser criado</param>
+        /// <returns>TRUE caso o Menu seja aberto com êxito</returns>
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_main, menu);
             return true;
         }
 
+        /// <summary>
+        /// Rotina para seleção de itens do Menu de Opções.
+        /// </summary>
+        /// <param name="item">O item selecionado pelo usuário</param>
+        /// <returns>TRUE caso não ocorra erros</returns>
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
@@ -57,6 +73,12 @@ namespace ARDC.BizCard.Droid.Activities
             return base.OnOptionsItemSelected(item);
         }
 
+        /// <summary>
+        /// Rotina para a requisição de Permissões.
+        /// </summary>
+        /// <param name="requestCode">Código da requisição</param>
+        /// <param name="permissions">Permissão requerida</param>
+        /// <param name="grantResults">Resultados das requisições</param>
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

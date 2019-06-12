@@ -8,11 +8,21 @@ using ZXing.Mobile;
 
 namespace ARDC.BizCard.Droid.Activities
 {
+    /// <summary>
+    /// Activity para a leitura de QR Codes.
+    /// </summary>
     [Activity(Label = "@string/action_read_card", Theme = "@style/AppTheme.NoActionBar", NoHistory = true)]
     public class QRScannerView : MvxAppCompatActivity<QrCodeScannerViewModel>
     {
+        /// <summary>
+        /// Scanner para leitura dos QR Codes.
+        /// </summary>
         public MobileBarcodeScanner Scanner { get; private set; }
 
+        /// <summary>
+        /// Rotina para criação da Activity.
+        /// </summary>
+        /// <param name="bundle"></param>
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -28,6 +38,9 @@ namespace ARDC.BizCard.Droid.Activities
             StartScan();
         }
 
+        /// <summary>
+        /// Inicia o processo de Escaneamento através da Câmera.
+        /// </summary>
         private async void StartScan()
         {
             var options = new MobileBarcodeScanningOptions()
@@ -44,6 +57,10 @@ namespace ARDC.BizCard.Droid.Activities
                 HandleScanResult(result);
         }
 
+        /// <summary>
+        /// Processa o resultado do processo de Escaneamento.
+        /// </summary>
+        /// <param name="result">O resultado a ser processado</param>
         private void HandleScanResult(ZXing.Result result)
         {
             if (result != null && !string.IsNullOrEmpty(result.Text))
