@@ -11,10 +11,20 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace ARDC.BizCard.Droid.Fragments
 {
+    /// <summary>
+    /// Fragment para "Agenda de Cartões".
+    /// </summary>
     [MvxFragmentPresentation(ActivityHostViewModelType = typeof(MainViewModel), AddToBackStack = true, FragmentContentId = Resource.Id.content_frame)]
     [Register(nameof(AgendaView))]
     public class AgendaView : MvxFragment<AgendaViewModel>
     {
+        /// <summary>
+        /// Rotina para a criação do Fragment.
+        /// </summary>
+        /// <param name="inflater"></param>
+        /// <param name="container"></param>
+        /// <param name="savedInstanceState"></param>
+        /// <returns>A View do fragment</returns>
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var _ = base.OnCreateView(inflater, container, savedInstanceState);
@@ -22,6 +32,10 @@ namespace ARDC.BizCard.Droid.Fragments
             return this.BindingInflate(Resource.Layout.agenda, null);
         }
 
+        /// <summary>
+        /// Rotina para criação do Fragment.
+        /// </summary>
+        /// <param name="savedInstanceState"></param>
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
@@ -33,6 +47,9 @@ namespace ARDC.BizCard.Droid.Fragments
             recyclerView.SetItemAnimator(new DefaultItemAnimator());
         }
 
+        /// <summary>
+        /// Rotina para continuação do Fragment.
+        /// </summary>
         public override void OnResume()
         {
             base.OnResume();
