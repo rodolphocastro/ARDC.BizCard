@@ -15,13 +15,25 @@ using System.Reflection;
 
 namespace ARDC.BizCard.Droid
 {
+    /// <summary>
+    /// Rotina de configuração do App.
+    /// </summary>
     public class Setup : MvxAppCompatSetup<App>
     {
+        /// <summary>
+        /// Inicializa o App.
+        /// </summary>
+        /// <param name="pluginManager">Provedor de Plugins do MvvMCross</param>
+        /// <param name="app">App a ser inicializado</param>
         protected override void InitializeApp(IMvxPluginManager pluginManager, IMvxApplication app)
         {
             base.InitializeApp(pluginManager, app);
             UserDialogs.Init(() => Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
         }
+
+        /// <summary>
+        /// Assemblies a serem carregadas explicitamente, contrapondo a perda de performance da Reflexão.
+        /// </summary>
         protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
         {
             typeof(NavigationView).Assembly,
