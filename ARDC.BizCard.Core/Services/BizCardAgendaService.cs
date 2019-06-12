@@ -6,14 +6,30 @@ using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.Services
 {
+    /// <summary>
+    /// Serviço para acesso à Agenda de cartões do usuário.
+    /// </summary>
     public class BizCardAgendaService : IBizCardAgendaService
     {
+        /// <summary>
+        /// Chave para armazenamento da Agenda no cache.
+        /// </summary>
         private const string MyAgendaCacheKey = "my_agenda";
 
+        /// <summary>
+        /// Agenda de cartões.
+        /// </summary>
         private List<BizCardContent> BizCards { get; set; }
 
+        /// <summary>
+        /// Provedor de Cache.
+        /// </summary>
         private ICacheService CacheService { get; }
 
+        /// <summary>
+        /// Cria uma nova instância do serviço.
+        /// </summary>
+        /// <param name="cacheService">Provedor de cache a ser utilizado</param>
         public BizCardAgendaService(ICacheService cacheService)
         {
             CacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
@@ -60,7 +76,10 @@ namespace ARDC.BizCard.Core.Services
             return await CacheService.RecoverOrFetchImageAsync(bizCard.ToGravatarURI(), CacheType.Local);
         }
 
-        private async Task InitializeCollection()
+        /// <summary>
+        /// Inicializa (cria e recupera dados) a Agenda.
+        /// </summary>
+        private async Task InitializeCollection()   // TODO: Refatorar para que tenha Async na assinatura
         {
             BizCards = new List<BizCardContent>();
 
@@ -69,11 +88,14 @@ namespace ARDC.BizCard.Core.Services
                 BizCards.AddRange(cacheCards);
         }
 
-        private async Task UpdateCache()
+        /// <summary>
+        /// Atualiza a Agenda no Cache.
+        /// </summary>
+        private async Task UpdateCache()    // TODO: Refatorar para que tenha Async na assinatura.
         {
             if (BizCards != null)
                 await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
         }
-        
+
     }
 }

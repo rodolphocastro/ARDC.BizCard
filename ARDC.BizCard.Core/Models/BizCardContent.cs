@@ -1,31 +1,67 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace ARDC.BizCard.Core.Models
 {
+    /// <summary>
+    /// Model para o Cartao de Visitas do App.
+    /// </summary>
     public class BizCardContent
     {
+        /// <summary>
+        /// Nome completo da pessoa.
+        /// </summary>
         public string NomeCompleto { get; set; }
 
+        /// <summary>
+        /// E-Mail para contato.
+        /// </summary>
         public string Email { get; set; }
 
+        /// <summary>
+        /// Telefone primário.
+        /// </summary>
         public string TelefonePrincipal { get; set; }
 
+        /// <summary>
+        /// Telefone secundário.
+        /// </summary>
         public string TelefoneSecundario { get; set; }
 
+        /// <summary>
+        /// Whatsapp para contato.
+        /// </summary>
         public string Whatsapp { get; set; }
 
+        /// <summary>
+        /// Perfil do LinkedIn.
+        /// </summary>
         public string LinkedIn { get; set; }
 
+        /// <summary>
+        /// Website para contato.
+        /// </summary>
         public string Website { get; set; }
 
+        /// <summary>
+        /// Empresa em que trabalha.
+        /// </summary>
         public string Empresa { get; set; }
 
+        /// <summary>
+        /// Cargo que ocupa.
+        /// </summary>
         public string Cargo { get; set; }
 
+        /// <summary>
+        /// Endereço comercial.
+        /// </summary>
         public string Endereco { get; set; }
 
+        /// <summary>
+        /// Indica se o cartão possui algum dado preenchido.
+        /// </summary>
+        /// <returns>TRUE caso o cartão possua algum dado preenchido, FALSE caso contrário</returns>
         public bool HasData()
         {
             return (
@@ -42,6 +78,11 @@ namespace ARDC.BizCard.Core.Models
             );
         }
 
+        /// <summary>
+        /// Obtem a URL do Gravatar do cartão.
+        /// </summary>
+        /// <returns>Uma URL para o Gravatar</returns>
+        /// <remarks>Caso o Cartão não possua e-mail, será retornada uma URL padrão do Gravatar</remarks>
         public string ToGravatarURI()
         {
             string baseAddr = @"https://www.gravatar.com/avatar/";

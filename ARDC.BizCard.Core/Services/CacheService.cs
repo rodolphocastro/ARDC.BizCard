@@ -5,11 +5,17 @@ using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.Services
 {
+    /// <summary>
+    /// Serviço para acesso ao Cache do App.
+    /// </summary>
     public class CacheService : ICacheService
     {
+        /// <summary>
+        /// Cria uma nova instância do serviço de Cache.
+        /// </summary>
         public CacheService()
         {
-            Akavache.Registrations.Start("ArdcBizCard");    // Inicializa o Akavache
+            Registrations.Start("ArdcBizCard");    // Inicializa o Akavache
         }
 
         public async Task InvalidateObjectAsync(string key, CacheType source)
