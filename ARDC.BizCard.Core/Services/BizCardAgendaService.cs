@@ -39,16 +39,16 @@ namespace ARDC.BizCard.Core.Services
         public async Task AddCardAsync(BizCardContent newCard, CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
             BizCards.Add(newCard);
-            await UpdateCache();
+            await UpdateCacheAsync();
         }
 
         public async Task<IList<BizCardContent>> GetCardsAsync(CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
             return BizCards;
         }
@@ -56,18 +56,18 @@ namespace ARDC.BizCard.Core.Services
         public async Task RemoveCardAsync(BizCardContent card, CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
             if (await GetCardByNameAsync(card.NomeCompleto, ct) != null)
                 BizCards.Remove(card);
 
-            await UpdateCache();
+            await UpdateCacheAsync();
         }
 
         public async Task<BizCardContent> GetCardByNameAsync(string name, CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
             return BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper());
         }
@@ -97,7 +97,7 @@ namespace ARDC.BizCard.Core.Services
         /// <summary>
         /// Inicializa (cria e recupera dados) a Agenda.
         /// </summary>
-        private async Task InitializeCollection()   // TODO: Refatorar para que tenha Async na assinatura
+        private async Task InitializeCollectionAsync()
         {
             BizCards = new List<BizCardContent>();
 
@@ -109,7 +109,7 @@ namespace ARDC.BizCard.Core.Services
         /// <summary>
         /// Atualiza a Agenda no Cache.
         /// </summary>
-        private async Task UpdateCache()    // TODO: Refatorar para que tenha Async na assinatura.
+        private async Task UpdateCacheAsync()
         {
             if (BizCards != null)
                 await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
