@@ -9,7 +9,7 @@ namespace ARDC.BizCard.Core.Services
     /// <summary>
     /// Serviço para acesso ao Cartão do usuário.
     /// </summary>
-    public class BizCardService : IBizCardService
+    public class MyBizCardService : IMyBizCardService
     {
         /// <summary>
         /// Chave para armazenamento do cartão no cache.
@@ -30,7 +30,7 @@ namespace ARDC.BizCard.Core.Services
         /// Cria uma nova instância do serviço.
         /// </summary>
         /// <param name="cacheService">Provedor de Cache a ser utilizado</param>
-        public BizCardService(ICacheService cacheService)
+        public MyBizCardService(ICacheService cacheService)
         {
             CacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }

@@ -20,7 +20,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// <param name="logProvider">Provedor de logs a ser utilizado</param>
         /// <param name="navigationService">Provedor de navegação a ser utilizado</param>
         /// <param name="bizCardService">Provedor de BizCard a ser utilizado</param>
-        public ViewMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)
+        public ViewMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMyBizCardService bizCardService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService;
             NavigateToEditMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<EditMyCardViewModel>());
@@ -30,7 +30,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// <summary>
         /// Provedor de BizCard.
         /// </summary>
-        private IBizCardService BizCardService { get; }
+        private IMyBizCardService BizCardService { get; }
 
         /// <summary>
         /// Command para navegar à ViewModel de "Edição" do Cartão.

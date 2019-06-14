@@ -21,7 +21,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// <param name="navigationService">Provedor de navegação a ser utilizado</param>
         /// <param name="bizCardService">Provedor de BizCard a ser utilizado</param>
         /// <param name="userDialogsService">Provedor de Dialogs a ser utilizado</param>
-        public EditMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService, IUserDialogs userDialogsService) : base(logProvider, navigationService)
+        public EditMyCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMyBizCardService bizCardService, IUserDialogs userDialogsService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService;
             UserDialogsService = userDialogsService;
@@ -33,7 +33,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// <summary>
         /// Provedor de BizCard.
         /// </summary>
-        private IBizCardService BizCardService { get; }
+        private IMyBizCardService BizCardService { get; }
 
         /// <summary>
         /// Provedor de Dialogs.

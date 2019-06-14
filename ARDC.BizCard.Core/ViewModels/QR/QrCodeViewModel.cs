@@ -20,7 +20,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         /// <param name="navigationService">Provedor de navegação a ser utilizado</param>
         /// <param name="bizCardService">Provedor de BizCards a ser utilizado</param>
         /// <param name="qrCodeService">Provedor de QrCodes a ser utilizado</param>
-        public QrCodeViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService, IQrCodeService qrCodeService) : base(logProvider, navigationService)
+        public QrCodeViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMyBizCardService bizCardService, IQrCodeService qrCodeService) : base(logProvider, navigationService)
         {
             BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
             QrCodeService = qrCodeService ?? throw new ArgumentNullException(nameof(qrCodeService));
@@ -30,7 +30,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         /// <summary>
         /// Provedor de BizCard.
         /// </summary>
-        private IBizCardService BizCardService { get; }
+        private IMyBizCardService BizCardService { get; }
 
         /// <summary>
         /// Provedor de QrCodes.
