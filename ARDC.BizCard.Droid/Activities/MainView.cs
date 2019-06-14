@@ -15,6 +15,11 @@ namespace ARDC.BizCard.Droid.Activities
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
+        static readonly string TAG = "MainView";
+
+        internal static readonly string CHANNEL_ID = "bizcard_general_notifications";
+        internal static readonly int NOTIFICATION_ID = 100;
+
         /// <summary>
         /// Rotina para criação da Activity.
         /// </summary>
@@ -36,7 +41,8 @@ namespace ARDC.BizCard.Droid.Activities
                 fTrans.Commit();
             }
 
-            IsGooglePlayAvailable();
+            if (IsGooglePlayAvailable())
+                SetupNotifications();
         }
 
         /// <summary>
@@ -101,6 +107,20 @@ namespace ARDC.BizCard.Droid.Activities
             {
                 return true;
             }
+        }
+
+        private void SetupNotifications()
+        {
+            if (Build.VERSION.SdkInt < BuildVersionCodes.O) // Para APIs anteriores ao Oreo não é necessário configurar channels
+                return;
+
+            var channel = new NotificationChannel(CHANNEL_ID, "Notificações Gerais", NotificationImportance.Default)
+            {
+                Description = "Notificações gerais do BizCard"
+            };
+
+            var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+            notificationManager.CreateNotificationChannel(channel);
         }
     }
 }
