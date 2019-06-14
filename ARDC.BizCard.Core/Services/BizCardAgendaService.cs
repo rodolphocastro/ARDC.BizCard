@@ -58,13 +58,13 @@ namespace ARDC.BizCard.Core.Services
             if (BizCards == null)
                 await InitializeCollection();
 
-            if (await GetCardByName(card.NomeCompleto, ct) != null)
+            if (await GetCardByNameAsync(card.NomeCompleto, ct) != null)
                 BizCards.Remove(card);
 
             await UpdateCache();
         }
 
-        public async Task<BizCardContent> GetCardByName(string name, CancellationToken ct)
+        public async Task<BizCardContent> GetCardByNameAsync(string name, CancellationToken ct)
         {
             if (BizCards == null)
                 await InitializeCollection();
