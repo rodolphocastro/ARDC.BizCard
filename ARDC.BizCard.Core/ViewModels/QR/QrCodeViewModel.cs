@@ -74,7 +74,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
             string cardJson = await BizCardService.GetMyCardAsJSONAsync();
 
             if (!string.IsNullOrEmpty(cardJson))
-                QrBytes = await QrCodeService.CreateQRCode(cardJson);   // TODO: Separar em uma MvxNotifyTask para melhorar performance
+                QrBytes = await QrCodeService.CreateQRCodeAsync(cardJson);   // TODO: Separar em uma MvxNotifyTask para melhorar performance
 
             HasQrData = QrBytes != null;
         }
