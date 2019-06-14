@@ -7,7 +7,7 @@ namespace ARDC.BizCard.Core.Services
     /// <summary>
     /// Define os métodos para acesso ao cartão do usuário.
     /// </summary>
-    public interface IBizCardService
+    public interface IMyBizCardService
     {
         /// <summary>
         /// Criar ou Editar o cartão.

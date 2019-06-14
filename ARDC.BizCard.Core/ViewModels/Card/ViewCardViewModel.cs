@@ -122,7 +122,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// <param name="ct">Token para controle de cancelamento</param>
         private async Task AddCardAsync(CancellationToken ct = default)
         {
-            if (await BizCardAgendaService.GetCardByName(BizCard.NomeCompleto) != null)
+            if (await BizCardAgendaService.GetCardByNameAsync(BizCard.NomeCompleto) != null)
             {
                 if (await UserDialogsService.ConfirmAsync("Já existe um cartão com este nome, deseja adiciona-lo novamente?", "Cartão Repetido", "Adicionar"))
                 {

@@ -35,13 +35,13 @@ namespace ARDC.BizCard.Droid.Activities
             MobileBarcodeScanner.Initialize(Application);
             Scanner = new MobileBarcodeScanner();
 
-            StartScan();
+            ScanAsync();
         }
 
         /// <summary>
         /// Inicia o processo de Escaneamento através da Câmera.
         /// </summary>
-        private async void StartScan()
+        private async void ScanAsync()
         {
             var options = new MobileBarcodeScanningOptions()
             {
@@ -71,7 +71,7 @@ namespace ARDC.BizCard.Droid.Activities
             }
             else
             {
-                StartScan();
+                ScanAsync();
             }
         }
     }

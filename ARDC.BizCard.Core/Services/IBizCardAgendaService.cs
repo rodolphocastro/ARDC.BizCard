@@ -37,7 +37,7 @@ namespace ARDC.BizCard.Core.Services
         /// <param name="name">O nome a ser buscado</param>
         /// <param name="ct">Token para controle de cancelamento</param>
         /// <returns>O cartão encontrado</returns>
-        Task<BizCardContent> GetCardByName(string name, CancellationToken ct = default);    //TODO:
+        Task<BizCardContent> GetCardByNameAsync(string name, CancellationToken ct = default);
 
         /// <summary>
         /// Recupera um cartão a partir de um JSON.

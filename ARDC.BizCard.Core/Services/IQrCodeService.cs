@@ -14,6 +14,6 @@ namespace ARDC.BizCard.Core.Services
         /// <param name="payload">O payload a ser carregado no QR Code</param>
         /// <param name="ct">Token para controle de cancelamento</param>
         /// <returns>Um array de bytes contendo o QR Code gerado</returns>
-        Task<byte[]> CreateQRCode(string payload, CancellationToken ct = default);
+        Task<byte[]> CreateQRCodeAsync(string payload, CancellationToken ct = default);
     }
 }

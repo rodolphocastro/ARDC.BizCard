@@ -9,7 +9,7 @@ namespace ARDC.BizCard.Core.Services
     /// <summary>
     /// Serviço para acesso ao Cartão do usuário.
     /// </summary>
-    public class BizCardService : IBizCardService
+    public class MyBizCardService : IMyBizCardService
     {
         /// <summary>
         /// Chave para armazenamento do cartão no cache.
@@ -30,7 +30,7 @@ namespace ARDC.BizCard.Core.Services
         /// Cria uma nova instância do serviço.
         /// </summary>
         /// <param name="cacheService">Provedor de Cache a ser utilizado</param>
-        public BizCardService(ICacheService cacheService)
+        public MyBizCardService(ICacheService cacheService)
         {
             CacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
@@ -44,26 +44,32 @@ namespace ARDC.BizCard.Core.Services
 
         public async Task<BizCardContent> GetMyCardAsync(CancellationToken ct)
         {
-            if (MyBizCard == null)
-                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+            await InitializeMyCardAsync();
 
             return MyBizCard ?? new BizCardContent();
         }
 
         public async Task<string> GetMyCardAsJSONAsync(CancellationToken ct)
         {
-            if (MyBizCard == null)
-                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+            await InitializeMyCardAsync();
 
             return JsonConvert.SerializeObject(MyBizCard);
         }
 
         public async Task<byte[]> GetGravatarAsync(CancellationToken ct)
         {
-            if (MyBizCard == null)
-                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
+            await InitializeMyCardAsync();
 
             return await CacheService.RecoverOrFetchImageAsync(MyBizCard.ToGravatarURI(), CacheType.Local);
+        }
+
+        /// <summary>
+        /// Inicializa a instância de BizCard do Serviço.
+        /// </summary>
+        private async Task InitializeMyCardAsync()
+        {
+            if (MyBizCard == null)
+                MyBizCard = await CacheService.RecoverObjectAsync<BizCardContent>(MyBizCardCacheKey, CacheType.Local);
         }
     }
 }
