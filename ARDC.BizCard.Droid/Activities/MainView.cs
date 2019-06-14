@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Gms.Common;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -34,6 +35,8 @@ namespace ARDC.BizCard.Droid.Activities
                 fTrans.Add(Resource.Id.content_frame, landingFragment);
                 fTrans.Commit();
             }
+
+            IsGooglePlayAvailable();
         }
 
         /// <summary>
@@ -85,6 +88,19 @@ namespace ARDC.BizCard.Droid.Activities
             ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private bool IsGooglePlayAvailable()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (resultCode != ConnectionResult.Success)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

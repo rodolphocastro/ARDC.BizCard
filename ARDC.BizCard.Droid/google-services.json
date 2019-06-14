@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "210061977064",
+    "firebase_url": "https://bizcard-d6de4.firebaseio.com",
+    "project_id": "bizcard-d6de4",
+    "storage_bucket": "bizcard-d6de4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210061977064:android:97bc1156d3224d71",
+        "android_client_info": {
+          "package_name": "com.ARDC.BizCard.Droid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210061977064-oru1t965rv172jd0puhg92rjvhhmoimu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ARDC.BizCard.Droid",
+            "certificate_hash": "5bb070c28da23b786b403154fc8ee9a674f40e77"
+          }
+        },
+        {
+          "client_id": "210061977064-5e9hj14i2252m51jh1gq7hsjrqtk9t5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfqFVpROOoW85NBkYTpC2hHB2uiD_UWqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210061977064-5e9hj14i2252m51jh1gq7hsjrqtk9t5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
