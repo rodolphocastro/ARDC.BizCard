@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Android.Gms.Common;
 using Android.Support.Design.Button;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;

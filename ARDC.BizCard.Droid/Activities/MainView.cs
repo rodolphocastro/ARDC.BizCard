@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Gms.Common;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -14,6 +15,11 @@ namespace ARDC.BizCard.Droid.Activities
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
+        static readonly string TAG = "MainView";
+
+        internal static readonly string CHANNEL_ID = "bizcard_general_notifications";
+        internal static readonly int NOTIFICATION_ID = 100;
+
         /// <summary>
         /// Rotina para criação da Activity.
         /// </summary>
@@ -34,6 +40,9 @@ namespace ARDC.BizCard.Droid.Activities
                 fTrans.Add(Resource.Id.content_frame, landingFragment);
                 fTrans.Commit();
             }
+
+            if (IsGooglePlayAvailable())
+                SetupNotifications();
         }
 
         /// <summary>
@@ -85,6 +94,33 @@ namespace ARDC.BizCard.Droid.Activities
             ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private bool IsGooglePlayAvailable()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (resultCode != ConnectionResult.Success)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void SetupNotifications()
+        {
+            if (Build.VERSION.SdkInt < BuildVersionCodes.O) // Para APIs anteriores ao Oreo não é necessário configurar channels
+                return;
+
+            var channel = new NotificationChannel(CHANNEL_ID, "Notificações Gerais", NotificationImportance.Default)
+            {
+                Description = "Notificações gerais do BizCard"
+            };
+
+            var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+            notificationManager.CreateNotificationChannel(channel);
         }
     }
 }
