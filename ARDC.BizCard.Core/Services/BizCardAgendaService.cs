@@ -1,4 +1,5 @@
 ﻿using ARDC.BizCard.Core.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -69,6 +70,23 @@ namespace ARDC.BizCard.Core.Services
                 await InitializeCollection();
 
             return BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper());
+        }
+
+        public Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct)
+        {
+            if (string.IsNullOrEmpty(jsonCard))
+                return Task.FromResult(new BizCardContent());
+
+            try
+            {
+                var newBizCard = JsonConvert.DeserializeObject<BizCardContent>(jsonCard);
+                return Task.FromResult(newBizCard);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(new BizCardContent());
+                throw;
+            }
         }
 
         public async Task<byte[]> GetGravatarAsync(BizCardContent bizCard, CancellationToken ct)

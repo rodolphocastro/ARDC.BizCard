@@ -40,6 +40,14 @@ namespace ARDC.BizCard.Core.Services
         Task<BizCardContent> GetCardByName(string name, CancellationToken ct = default);    //TODO:
 
         /// <summary>
+        /// Recupera um cartão a partir de um JSON.
+        /// </summary>
+        /// <param name="jsonCard">JSON contendo o cartão a ser recuperado</param>
+        /// <param name="ct">Token para controle de cancelamento</param>
+        /// <returns>O Cartão desserializado</returns>
+        Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct = default);
+
+        /// <summary>
         /// Obtem o Gravatar de um cartão.
         /// </summary>
         /// <param name="bizCard">O cartão a ter o Gravatar buscado</param>

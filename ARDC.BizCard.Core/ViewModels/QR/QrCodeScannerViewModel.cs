@@ -22,17 +22,17 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         /// <param name="logProvider">Provedor de logs a ser utilizado</param>
         /// <param name="navigationService">Provedor de navegação a ser utilizado</param>
         /// <param name="bizCardService">Provedor de acesso a card a ser utilizado</param>
-        public QrCodeScannerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardService bizCardService) : base(logProvider, navigationService)  // TODO: Refatorar para utilizar o IBizCardAgendaService
+        public QrCodeScannerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardAgendaService bizCardAgendaService) : base(logProvider, navigationService)
         {
-            BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
+            BizCardAgendaService = bizCardAgendaService ?? throw new ArgumentNullException(nameof(bizCardAgendaService));
 
             ReadCardCommand = new MvxCommand<string>((p) => SaveCardTask = MvxNotifyTask.Create(() => LoadCardFromJsonAsync(p)));
         }
 
         /// <summary>
-        /// Provedor de acesso ao Card do Usuário.
+        /// Provedor de Agenda.
         /// </summary>
-        private IBizCardService BizCardService { get; } // TODO: Remover em detrimento do IBizCardAgendaService
+        private IBizCardAgendaService BizCardAgendaService { get; }
 
         private MvxNotifyTask _saveCardTask;
 
@@ -57,7 +57,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         /// <param name="ct">Token para controle de cancelamento</param>
         private async Task LoadCardFromJsonAsync(string payload, CancellationToken ct = default)
         {
-            var bizCard = await BizCardService.GetCardFromJSONAsync(payload, ct);
+            var bizCard = await BizCardAgendaService.GetCardFromJSONAsync(payload, ct);
 
             if (bizCard.HasData())
                 await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizCard);
