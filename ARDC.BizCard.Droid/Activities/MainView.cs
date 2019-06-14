@@ -2,9 +2,11 @@
 using Android.Gms.Common;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using ARDC.BizCard.Core.ViewModels;
 using ARDC.BizCard.Droid.Fragments;
+using Firebase.Iid;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace ARDC.BizCard.Droid.Activities
@@ -121,6 +123,10 @@ namespace ARDC.BizCard.Droid.Activities
 
             var notificationManager = (NotificationManager)GetSystemService(NotificationService);
             notificationManager.CreateNotificationChannel(channel);
+
+#if DEBUG
+            Log.Debug(TAG, FirebaseInstanceId.Instance.Token);
+#endif
         }
     }
 }
