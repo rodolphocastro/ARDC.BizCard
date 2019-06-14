@@ -10,7 +10,7 @@ namespace ARDC.BizCard.Droid.Services
     [IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
     public class BizCardFirebaseIIDService : FirebaseInstanceIdService
     {
-        const string TAG = "MyFirebaseIIDService";
+        const string TAG = "BizCardFirebaseIdentity";
 
         public override void OnTokenRefresh()
         {
