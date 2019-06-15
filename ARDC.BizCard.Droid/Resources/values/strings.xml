@@ -1,5 +1,7 @@
 <resources>
   <string name="app_name">Meu Cartão de Visitas</string>
+  <!-- Crashlytics -->
+  <string name="com.crashlytics.android.build_id">2019.06.09-alpha.1</string>
   <!-- Ações -->
   <string name="action_my_card">Meu Cartão</string>
   <string name="action_edit_card">Configurar Cartão</string>

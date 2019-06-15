@@ -44,7 +44,10 @@ namespace ARDC.BizCard.Droid.Activities
             }
 
             if (IsGooglePlayAvailable())
+            {
                 SetupNotifications();
+                SetupCrashlytics();
+            }
         }
 
         /// <summary>
@@ -126,6 +129,16 @@ namespace ARDC.BizCard.Droid.Activities
 
 #if DEBUG
             Log.Debug(TAG, FirebaseInstanceId.Instance.Token);
+#endif
+        }
+
+        private void SetupCrashlytics()
+        {
+            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+
+            Crashlytics.Crashlytics.HandleManagedExceptions();
+#if DEBUG
+            Log.Debug(TAG, "Crashlytics Started");
 #endif
         }
     }
