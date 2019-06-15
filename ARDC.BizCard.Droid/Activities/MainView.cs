@@ -50,6 +50,8 @@ namespace ARDC.BizCard.Droid.Activities
                 SetupCrashlytics();
                 SetupAnalytics();
             }
+
+            FirebaseAnalytics.GetInstance(this).SetCurrentScreen(this, "Main View", nameof(MainView));
         }
 
         /// <summary>

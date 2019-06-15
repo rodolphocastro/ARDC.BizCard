@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 using ARDC.BizCard.Core.ViewModels.QR;
+using Firebase.Analytics;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using System.Collections.Generic;
 using ZXing;
@@ -31,6 +32,8 @@ namespace ARDC.BizCard.Droid.Activities
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+
+            FirebaseAnalytics.GetInstance(this).SetCurrentScreen(this, "QR Scanner", nameof(QRScannerView));
 
             MobileBarcodeScanner.Initialize(Application);
             Scanner = new MobileBarcodeScanner();
