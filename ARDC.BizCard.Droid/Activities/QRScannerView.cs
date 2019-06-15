@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 using ARDC.BizCard.Core.ViewModels.QR;
+using Firebase.Analytics;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using System.Collections.Generic;
 using ZXing;
@@ -8,11 +9,21 @@ using ZXing.Mobile;
 
 namespace ARDC.BizCard.Droid.Activities
 {
+    /// <summary>
+    /// Activity para a leitura de QR Codes.
+    /// </summary>
     [Activity(Label = "@string/action_read_card", Theme = "@style/AppTheme.NoActionBar", NoHistory = true)]
     public class QRScannerView : MvxAppCompatActivity<QrCodeScannerViewModel>
     {
+        /// <summary>
+        /// Scanner para leitura dos QR Codes.
+        /// </summary>
         public MobileBarcodeScanner Scanner { get; private set; }
 
+        /// <summary>
+        /// Rotina para criação da Activity.
+        /// </summary>
+        /// <param name="bundle"></param>
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -22,13 +33,18 @@ namespace ARDC.BizCard.Droid.Activities
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
+            FirebaseAnalytics.GetInstance(this).SetCurrentScreen(this, "QR Scanner", nameof(QRScannerView));
+
             MobileBarcodeScanner.Initialize(Application);
             Scanner = new MobileBarcodeScanner();
 
-            StartScan();
+            ScanAsync();
         }
 
-        private async void StartScan()
+        /// <summary>
+        /// Inicia o processo de Escaneamento através da Câmera.
+        /// </summary>
+        private async void ScanAsync()
         {
             var options = new MobileBarcodeScanningOptions()
             {
@@ -44,6 +60,10 @@ namespace ARDC.BizCard.Droid.Activities
                 HandleScanResult(result);
         }
 
+        /// <summary>
+        /// Processa o resultado do processo de Escaneamento.
+        /// </summary>
+        /// <param name="result">O resultado a ser processado</param>
         private void HandleScanResult(ZXing.Result result)
         {
             if (result != null && !string.IsNullOrEmpty(result.Text))
@@ -54,7 +74,7 @@ namespace ARDC.BizCard.Droid.Activities
             }
             else
             {
-                StartScan();
+                ScanAsync();
             }
         }
     }

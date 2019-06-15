@@ -1,4 +1,5 @@
 ﻿using ARDC.BizCard.Core.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -6,14 +7,30 @@ using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.Services
 {
+    /// <summary>
+    /// Serviço para acesso à Agenda de cartões do usuário.
+    /// </summary>
     public class BizCardAgendaService : IBizCardAgendaService
     {
+        /// <summary>
+        /// Chave para armazenamento da Agenda no cache.
+        /// </summary>
         private const string MyAgendaCacheKey = "my_agenda";
 
+        /// <summary>
+        /// Agenda de cartões.
+        /// </summary>
         private List<BizCardContent> BizCards { get; set; }
 
+        /// <summary>
+        /// Provedor de Cache.
+        /// </summary>
         private ICacheService CacheService { get; }
 
+        /// <summary>
+        /// Cria uma nova instância do serviço.
+        /// </summary>
+        /// <param name="cacheService">Provedor de cache a ser utilizado</param>
         public BizCardAgendaService(ICacheService cacheService)
         {
             CacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
@@ -22,16 +39,16 @@ namespace ARDC.BizCard.Core.Services
         public async Task AddCardAsync(BizCardContent newCard, CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
             BizCards.Add(newCard);
-            await UpdateCache();
+            await UpdateCacheAsync();
         }
 
         public async Task<IList<BizCardContent>> GetCardsAsync(CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
             return BizCards;
         }
@@ -39,20 +56,37 @@ namespace ARDC.BizCard.Core.Services
         public async Task RemoveCardAsync(BizCardContent card, CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
-            if (await GetCardByName(card.NomeCompleto, ct) != null)
+            if (await GetCardByNameAsync(card.NomeCompleto, ct) != null)
                 BizCards.Remove(card);
 
-            await UpdateCache();
+            await UpdateCacheAsync();
         }
 
-        public async Task<BizCardContent> GetCardByName(string name, CancellationToken ct)
+        public async Task<BizCardContent> GetCardByNameAsync(string name, CancellationToken ct)
         {
             if (BizCards == null)
-                await InitializeCollection();
+                await InitializeCollectionAsync();
 
             return BizCards.Find(c => c.NomeCompleto.ToUpper() == name.ToUpper());
+        }
+
+        public Task<BizCardContent> GetCardFromJSONAsync(string jsonCard, CancellationToken ct)
+        {
+            if (string.IsNullOrEmpty(jsonCard))
+                return Task.FromResult(new BizCardContent());
+
+            try
+            {
+                var newBizCard = JsonConvert.DeserializeObject<BizCardContent>(jsonCard);
+                return Task.FromResult(newBizCard);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(new BizCardContent());
+                throw;
+            }
         }
 
         public async Task<byte[]> GetGravatarAsync(BizCardContent bizCard, CancellationToken ct)
@@ -60,7 +94,10 @@ namespace ARDC.BizCard.Core.Services
             return await CacheService.RecoverOrFetchImageAsync(bizCard.ToGravatarURI(), CacheType.Local);
         }
 
-        private async Task InitializeCollection()
+        /// <summary>
+        /// Inicializa (cria e recupera dados) a Agenda.
+        /// </summary>
+        private async Task InitializeCollectionAsync()
         {
             BizCards = new List<BizCardContent>();
 
@@ -69,11 +106,14 @@ namespace ARDC.BizCard.Core.Services
                 BizCards.AddRange(cacheCards);
         }
 
-        private async Task UpdateCache()
+        /// <summary>
+        /// Atualiza a Agenda no Cache.
+        /// </summary>
+        private async Task UpdateCacheAsync()
         {
             if (BizCards != null)
                 await CacheService.StoreObjectAsync(MyAgendaCacheKey, BizCards, CacheType.Local);
         }
-        
+
     }
 }
