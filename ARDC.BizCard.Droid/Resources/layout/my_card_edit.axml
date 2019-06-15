@@ -7,263 +7,281 @@
     android:layout_height="match_parent"    
     tools:showIn="@layout/activity_main">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
-        <!-- Indicadores de Carregando -->
         <ProgressBar
-            android:id="@+id/my_progressBar"  
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:indeterminate="true"
-            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:text="@string/edit_loading"
-            app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:text="@string/edit_welcome"
-            android:textStyle="bold"
-            app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
-
-        <!-- Inputs -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputNomeCompleto"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_nome_completo"
-                app:MvxBind="Text BizCard.NomeCompleto"
-                android:inputType="textPersonName"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:drawableLeft="@drawable/account"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputEmail"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_email"
-                app:MvxBind="Text BizCard.Email"
-                android:inputType="textEmailAddress"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:drawableLeft="@drawable/at"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputEmpresa"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_empresa"
-                app:MvxBind="Text BizCard.Empresa"
-                android:inputType="textNoSuggestions"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:drawableLeft="@drawable/domain"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputCargo"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_cargo"
-                app:MvxBind="Text BizCard.Cargo"
-                android:inputType="textNoSuggestions"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:drawableLeft="@drawable/briefcase"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputEndereco"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_endereco"
-                app:MvxBind="Text BizCard.Endereco"
-                android:inputType="textPostalAddress"
-                android:textSize="16sp"
-                android:singleLine="true" 
-                android:drawableLeft="@drawable/map_marker"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputTelefonePrincipal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_telefone_principal"
-                app:MvxBind="Text BizCard.TelefonePrincipal"
-                android:inputType="phone"
-                android:textSize="16sp"
-                android:singleLine="true" 
-                android:drawableLeft="@drawable/phone"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputTelefoneSecundario"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_telefone_secundario"
-                app:MvxBind="Text BizCard.TelefoneSecundario"
-                android:inputType="phone"
-                android:textSize="16sp"
-                android:singleLine="true"                 
-                android:drawableLeft="@drawable/phone"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputWhatsapp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_whatsapp"
-                app:MvxBind="Text BizCard.Whatsapp"
-                android:inputType="phone"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:drawableLeft="@drawable/whatsapp"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputLinkedIn"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_linkedin"
-                app:MvxBind="Text BizCard.LinkedIn"
-                android:inputType="textNoSuggestions"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:drawableLeft="@drawable/linkedin_box"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textInputWebsite"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/label_website"
-                app:MvxBind="Text BizCard.Website"
-                android:inputType="textNoSuggestions"
-                android:textSize="16sp"
-                android:singleLine="true" 
-                android:drawableLeft="@drawable/link"
-                android:drawablePadding="5sp"/>
-
-        </android.support.design.widget.TextInputLayout>
-        
-        <android.support.design.button.MaterialButton
-            android:id="@+id/buttonSalvarDados"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:id="@+id/bizcard_gravatar_progress" 
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:text="@string/action_save_changes"
-            app:MvxBind="Click SaveChangesCommand; Enabled InitializeTask.IsCompleted"/>
+            android:indeterminate="true"
+            app:MvxBind="Visibility Visibility(LoadCardTask.IsNotCompleted)"
+            tools:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:MvxBind="Visibility Visibility(LoadCardTask.IsCompleted)">
+
+            <!-- Indicadores de Carregando -->
+            <ProgressBar
+                android:id="@+id/my_progressBar"  
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:indeterminate="true"
+                app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/edit_loading"
+                app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/edit_welcome"
+                android:textStyle="bold"
+                app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
+
+            <!-- Inputs -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputNomeCompleto"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_nome_completo"
+                    app:MvxBind="Text BizCard.NomeCompleto"
+                    android:inputType="textPersonName"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/account"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputEmail"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_email"
+                    app:MvxBind="Text BizCard.Email"
+                    android:inputType="textEmailAddress"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/at"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputEmpresa"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_empresa"
+                    app:MvxBind="Text BizCard.Empresa"
+                    android:inputType="textNoSuggestions"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/domain"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputCargo"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_cargo"
+                    app:MvxBind="Text BizCard.Cargo"
+                    android:inputType="textNoSuggestions"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/briefcase"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputEndereco"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_endereco"
+                    app:MvxBind="Text BizCard.Endereco"
+                    android:inputType="textPostalAddress"
+                    android:textSize="16sp"
+                    android:singleLine="true" 
+                    android:drawableLeft="@drawable/map_marker"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputTelefonePrincipal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_telefone_principal"
+                    app:MvxBind="Text BizCard.TelefonePrincipal"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:singleLine="true" 
+                    android:drawableLeft="@drawable/phone"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputTelefoneSecundario"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_telefone_secundario"
+                    app:MvxBind="Text BizCard.TelefoneSecundario"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:singleLine="true"                 
+                    android:drawableLeft="@drawable/phone"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputWhatsapp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_whatsapp"
+                    app:MvxBind="Text BizCard.Whatsapp"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/whatsapp"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputLinkedIn"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_linkedin"
+                    app:MvxBind="Text BizCard.LinkedIn"
+                    android:inputType="textNoSuggestions"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/linkedin_box"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputWebsite"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_website"
+                    app:MvxBind="Text BizCard.Website"
+                    android:inputType="textNoSuggestions"
+                    android:textSize="16sp"
+                    android:singleLine="true" 
+                    android:drawableLeft="@drawable/link"
+                    android:drawablePadding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+        
+            <android.support.design.button.MaterialButton
+                android:id="@+id/buttonSalvarDados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:text="@string/action_save_changes"
+                app:MvxBind="Click SaveChangesCommand; Enabled InitializeTask.IsCompleted"/>
     
-    </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    
 </ScrollView>

@@ -5,6 +5,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels.Card
@@ -27,6 +28,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             UserDialogsService = userDialogsService;
 
             NavigateToViewMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
+            LoadCardCommand = new MvxCommand(() => LoadCardTask = MvxNotifyTask.Create(() => LoadCardAsync()));
             SaveChangesCommand = new MvxCommand(() => SaveChangesTask = MvxNotifyTask.Create(() => SaveChangesAsync()));
         }
 
@@ -62,6 +64,17 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _saveChangesTask, value); }
         }
 
+        private MvxNotifyTask _loadCardTask;
+
+        /// <summary>
+        /// Task para acompanhamento do processo de de "Carregar" o Cartão.
+        /// </summary>
+        public MvxNotifyTask LoadCardTask
+        {
+            get { return _loadCardTask; }
+            set { SetProperty(ref _loadCardTask, value); }
+        }
+
         /// <summary>
         /// Command para navegar à ViewModel de "Visualizar meu Cartão".
         /// </summary>
@@ -73,13 +86,18 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         public IMvxCommand SaveChangesCommand { get; private set; }
 
         /// <summary>
+        /// Command para carregar o Meu Cartão.
+        /// </summary>
+        public IMvxCommand LoadCardCommand { get; private set; }
+
+        /// <summary>
         /// Inicializa a ViewModel.
         /// </summary>
         public override async Task Initialize()
         {
             await base.Initialize();
 
-            BizCard = await BizCardService.GetMyCardAsync();    // TODO: Separar a uma MvxNotifyTask para melhor performance.
+            LoadCardCommand.Execute();
         }
 
         /// <summary>
@@ -92,6 +110,15 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             UserDialogsService.Toast("Alterações Salvas");
 
             await NavigateToViewMyCardCommand.ExecuteAsync();
+        }
+
+        /// <summary>
+        /// Busca o Cartão no Cache.
+        /// </summary>
+        /// <param name="ct">Token para controle de cancelamento</param>
+        private async Task LoadCardAsync(CancellationToken ct = default)
+        {
+            BizCard = await BizCardService.GetMyCardAsync(ct);
         }
     }
 }
