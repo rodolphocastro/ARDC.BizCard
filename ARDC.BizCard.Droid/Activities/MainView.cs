@@ -6,6 +6,7 @@ using Android.Util;
 using Android.Views;
 using ARDC.BizCard.Core.ViewModels;
 using ARDC.BizCard.Droid.Fragments;
+using Firebase.Analytics;
 using Firebase.Iid;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
@@ -47,7 +48,10 @@ namespace ARDC.BizCard.Droid.Activities
             {
                 SetupNotifications();
                 SetupCrashlytics();
+                SetupAnalytics();
             }
+
+            FirebaseAnalytics.GetInstance(this).SetCurrentScreen(this, "Main View", nameof(MainView));
         }
 
         /// <summary>
@@ -140,6 +144,11 @@ namespace ARDC.BizCard.Droid.Activities
 #if DEBUG
             Log.Debug(TAG, "Crashlytics Started");
 #endif
+        }
+
+        private void SetupAnalytics()
+        {
+            FirebaseAnalytics.GetInstance(this).SetAnalyticsCollectionEnabled(true);            
         }
     }
 }

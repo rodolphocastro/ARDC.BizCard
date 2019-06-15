@@ -4,6 +4,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using ARDC.BizCard.Core.ViewModels;
 using ARDC.BizCard.Core.ViewModels.Agenda;
+using Firebase.Analytics;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
@@ -28,6 +29,8 @@ namespace ARDC.BizCard.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var _ = base.OnCreateView(inflater, container, savedInstanceState);
+
+            FirebaseAnalytics.GetInstance(Activity).SetCurrentScreen(Activity, "Agenda", nameof(AgendaView));
 
             return this.BindingInflate(Resource.Layout.agenda, null);
         }
