@@ -4,6 +4,7 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels.QR
@@ -24,6 +25,7 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
             QrCodeService = qrCodeService ?? throw new ArgumentNullException(nameof(qrCodeService));
+            CreateQRCodeCommand = new MvxCommand(() => CreateQrCodeTask = MvxNotifyTask.Create(() => CreateQRCodeAsync()));
             NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LandingViewModel>());
         }
 
@@ -48,15 +50,15 @@ namespace ARDC.BizCard.Core.ViewModels.QR
             set { SetProperty(ref _qrBytes, value); }
         }
 
-        private bool _hasQrData = false;
+        private MvxNotifyTask _createQrCodeTask;
 
         /// <summary>
-        /// Flag indicando que existe um QR Code a ser exibido.
+        /// Task para acompanhamento do processo de criação de QR Code.
         /// </summary>
-        public bool HasQrData
+        public MvxNotifyTask CreateQrCodeTask
         {
-            get { return _hasQrData; }
-            set { SetProperty(ref _hasQrData, value); }
+            get { return _createQrCodeTask; }
+            set { SetProperty(ref _createQrCodeTask, value); }
         }
 
         /// <summary>
@@ -65,19 +67,30 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         public IMvxAsyncCommand NavigateToHomeCommand { get; private set; }     //  TODO: Verificar necessidade deste Command.
 
         /// <summary>
+        /// Command para criar o QR Code.
+        /// </summary>
+        public IMvxCommand CreateQRCodeCommand { get; private set; }
+
+        /// <summary>
         /// Inicializa o ViewModel.
         /// </summary>
         public override async Task Initialize()
         {
             await base.Initialize();
 
-            string cardJson = await BizCardService.GetMyCardAsJSONAsync();
-
-            if (!string.IsNullOrEmpty(cardJson))
-                QrBytes = await QrCodeService.CreateQRCodeAsync(cardJson);   // TODO: Separar em uma MvxNotifyTask para melhorar performance
-
-            HasQrData = QrBytes != null;
+            CreateQRCodeCommand.Execute();
         }
 
+        /// <summary>
+        /// Cria um QR Code
+        /// </summary>
+        /// <returns></returns>
+        private async Task CreateQRCodeAsync(CancellationToken ct = default)
+        {
+            string cardJson = await BizCardService.GetMyCardAsJSONAsync(ct);
+
+            if (!string.IsNullOrEmpty(cardJson))
+                QrBytes = await QrCodeService.CreateQRCodeAsync(cardJson, ct);
+        }
     }
 }
