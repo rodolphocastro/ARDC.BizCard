@@ -25,8 +25,8 @@ namespace ARDC.BizCard.Core.ViewModels.QR
         {
             BizCardService = bizCardService ?? throw new ArgumentNullException(nameof(bizCardService));
             QrCodeService = qrCodeService ?? throw new ArgumentNullException(nameof(qrCodeService));
+
             CreateQRCodeCommand = new MvxCommand(() => CreateQrCodeTask = MvxNotifyTask.Create(() => CreateQRCodeAsync()));
-            NavigateToHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LandingViewModel>());
         }
 
         /// <summary>
@@ -60,11 +60,6 @@ namespace ARDC.BizCard.Core.ViewModels.QR
             get { return _createQrCodeTask; }
             set { SetProperty(ref _createQrCodeTask, value); }
         }
-
-        /// <summary>
-        /// Command para navegar ao LandingViewModel.
-        /// </summary>
-        public IMvxAsyncCommand NavigateToHomeCommand { get; private set; }     //  TODO: Verificar necessidade deste Command.
 
         /// <summary>
         /// Command para criar o QR Code.
