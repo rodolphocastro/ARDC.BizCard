@@ -133,7 +133,6 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
         private async Task LoadAgendaAsync(CancellationToken ct = default)
         {
             var cacheCards = await BizCardAgendaService.GetCardsAsync(ct);
-            await Task.Delay(5000);
             BizCards.SwitchTo(cacheCards);
         }
 
