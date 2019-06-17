@@ -9,6 +9,29 @@ namespace ARDC.BizCard.Core.Models
     public class BizCardContent
     {
         /// <summary>
+        /// Cria uma instância vazia de BizCard.
+        /// </summary>
+        public BizCardContent() { }
+
+        /// <summary>
+        /// Cria uma cópia de uma instância existente de BizCard.
+        /// </summary>
+        /// <param name="bizCard">A instância a ser copiada</param>
+        public BizCardContent(BizCardContent bizCard)
+        {
+            NomeCompleto = bizCard.NomeCompleto;
+            Email = bizCard.Email;
+            TelefonePrincipal = bizCard.TelefonePrincipal;
+            TelefoneSecundario = bizCard.TelefoneSecundario;
+            Whatsapp = bizCard.Whatsapp;
+            LinkedIn = bizCard.LinkedIn;
+            Website = bizCard.Website;
+            Empresa = bizCard.Empresa;
+            Cargo = bizCard.Cargo;
+            Endereco = bizCard.Endereco;
+        }
+
+        /// <summary>
         /// Nome completo da pessoa.
         /// </summary>
         public string NomeCompleto { get; set; }
