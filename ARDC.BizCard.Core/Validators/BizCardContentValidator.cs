@@ -42,6 +42,10 @@ namespace ARDC.BizCard.Core.Validators
             // Website: Caso informado, deve ser um endereço válido
             RuleFor(c => c.Website)
                 .Matches(@"^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$").Unless(c => string.IsNullOrWhiteSpace(c.Website));
+
+            // LinkedIn: Caso informado, deve ser um perfil válido
+            RuleFor(c => c.LinkedIn)
+                .Matches(@"[A-z0-9_-]+").Unless(c => string.IsNullOrWhiteSpace(c.LinkedIn));
         }
     }
 }
