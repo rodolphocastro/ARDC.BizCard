@@ -35,6 +35,10 @@ namespace ARDC.BizCard.Core.Validators
             RuleFor(c => c.TelefoneSecundario)
                 .Matches(@"^([\d\ \(\)\-\+])+$").Unless(c => string.IsNullOrWhiteSpace(c.TelefoneSecundario));
 
+            // Whatsapp: Caso informado, deve ser um número valido
+            RuleFor(c => c.Whatsapp)
+                .Matches(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$").Unless(c => string.IsNullOrWhiteSpace(c.Whatsapp));
+
             // Website: Caso informado, deve ser um endereço válido
             RuleFor(c => c.Website)
                 .Matches(@"^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$").Unless(c => string.IsNullOrWhiteSpace(c.Website));
