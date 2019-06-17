@@ -132,7 +132,10 @@ namespace ARDC.BizCard.Droid.Activities
             notificationManager.CreateNotificationChannel(channel);
 
 #if DEBUG
-            Log.Debug(TAG, FirebaseInstanceId.Instance.Token);
+            if (string.IsNullOrWhiteSpace(FirebaseInstanceId.Instance.Token))
+                Log.Debug(TAG, "Token não obtido");
+            else
+                Log.Debug(TAG, FirebaseInstanceId.Instance.Token);
 #endif
         }
 
