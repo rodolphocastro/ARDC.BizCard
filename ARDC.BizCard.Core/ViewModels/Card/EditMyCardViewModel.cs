@@ -1,10 +1,12 @@
 ﻿using Acr.UserDialogs;
 using ARDC.BizCard.Core.Models;
 using ARDC.BizCard.Core.Services;
+using ARDC.BizCard.Core.Validators;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -105,11 +107,21 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// </summary>
         private async Task SaveChangesAsync()
         {
-            await BizCardService.CreateOrEditMyCardAsync(BizCard);
+            var validator = new BizCardContentValidator();
+            var validationResult = await validator.ValidateAsync(BizCard);
 
-            UserDialogsService.Toast("Alterações Salvas");
+            if (validationResult.IsValid)
+            {
+                await BizCardService.CreateOrEditMyCardAsync(BizCard);
 
-            await NavigateToViewMyCardCommand.ExecuteAsync();
+                UserDialogsService.Toast("Alterações Salvas");
+
+                await NavigateToViewMyCardCommand.ExecuteAsync();
+            }
+            else
+            {
+                UserDialogsService.Alert(validationResult.Errors.First().ErrorMessage, "Erro");     // TODO: Verificar como retornar os erros para Validações nos EditTexts do Android
+            }            
         }
 
         /// <summary>
