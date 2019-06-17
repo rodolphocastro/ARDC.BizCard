@@ -12,8 +12,10 @@ namespace ARDC.BizCard.Core.Validators
 
             // E-Mail: Caso informado, deve seguir o padrão de e-mail, máximo de 255 caracteres
             RuleFor(c => c.Email)
-                .MaximumLength(255)
-                .EmailAddress();
+                .MaximumLength(255).Unless(c => string.IsNullOrWhiteSpace(c.Email))
+                .EmailAddress().Unless(c => string.IsNullOrWhiteSpace(c.Email));
+
+
         }
     }
 }
