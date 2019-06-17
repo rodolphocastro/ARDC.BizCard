@@ -9,6 +9,11 @@ namespace ARDC.BizCard.Core.Validators
         {
             // Nome Completo: Deve estar preenchido, entre 5 e 255 caracteres
             RuleFor(c => c.NomeCompleto).NotEmpty().MinimumLength(5).MaximumLength(255);
+
+            // E-Mail: Caso informado, deve seguir o padrão de e-mail, máximo de 255 caracteres
+            RuleFor(c => c.Email)
+                .MaximumLength(255)
+                .EmailAddress();
         }
     }
 }
