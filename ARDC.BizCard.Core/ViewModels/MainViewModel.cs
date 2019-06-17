@@ -20,31 +20,48 @@ namespace ARDC.BizCard.Core.ViewModels
         /// <param name="navigationService">Provedor de Navegação a ser utilizado</param>
         public MainViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            // TODO: Atualizar para que a navegação seja realizada através de uma MvxNotifyTask
-            NavigateToMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
-            NavigateToQrCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<QrCodeViewModel>());
-            NavigateToReadQrCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<QrCodeScannerViewModel>());
-            NavigateToAgendaCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AgendaViewModel>());
+            NavigateToMyCardCommand = new MvxCommand(() => NavigationTask = MvxNotifyTask.Create(() => NavigationService.Navigate<ViewMyCardViewModel>()), () => CanNavigate());
+            NavigateToQrCommand = new MvxCommand(() => NavigationTask = MvxNotifyTask.Create(() => NavigationService.Navigate<QrCodeViewModel>()), () => CanNavigate());
+            NavigateToAgendaCommand = new MvxCommand(() => NavigationTask = MvxNotifyTask.Create(() => NavigationService.Navigate<AgendaViewModel>()), () => CanNavigate());
+            //NavigateToMyCardCommand = new MvxCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
+            //NavigateToQrCommand = new MvxCommand(async () => await NavigationService.Navigate<QrCodeViewModel>());
+            //NavigateToAgendaCommand = new MvxCommand(async () => await NavigationService.Navigate<AgendaViewModel>());
         }
+
+        private MvxNotifyTask<bool> _navigationTask;
+
+        /// <summary>
+        /// Task para acompanhamento da navegação da MainView.
+        /// </summary>
+        public MvxNotifyTask<bool> NavigationTask
+        {
+            get { return _navigationTask; }
+            set { SetProperty(ref _navigationTask, value); }
+        }
+
 
         /// <summary>
         /// Command para navegar à ViewModel de "Meu Cartão".
         /// </summary>
-        public IMvxAsyncCommand NavigateToMyCardCommand { get; private set; }
+        public IMvxCommand NavigateToMyCardCommand { get; private set; }
 
         /// <summary>
         /// Command para navegar à ViewModel de "Meu QR Code".
         /// </summary>
-        public IMvxAsyncCommand NavigateToQrCommand { get; private set; }
-
-        /// <summary>
-        /// Command para navegar à ViewModel de "Ler QR Code".
-        /// </summary>
-        public IMvxAsyncCommand NavigateToReadQrCommand { get; private set; }   // TODO: Verificar para remover este Command.
+        public IMvxCommand NavigateToQrCommand { get; private set; }
 
         /// <summary>
         /// Command para navegar à ViewModel de "Agenda".
         /// </summary>
-        public IMvxAsyncCommand NavigateToAgendaCommand { get; private set; }
+        public IMvxCommand NavigateToAgendaCommand { get; private set; }
+
+        /// <summary>
+        /// Verifica se a navegação pode ser realizada.
+        /// </summary>
+        /// <returns>TRUE caso a Task não exista ou esteja finalizada</returns>
+        private bool CanNavigate()
+        {
+            return NavigationTask == null || NavigationTask.IsCompleted;
+        }
     }
 }

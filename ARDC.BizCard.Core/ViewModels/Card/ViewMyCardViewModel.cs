@@ -24,6 +24,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             BizCardService = bizCardService;
             NavigateToEditMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<EditMyCardViewModel>());
+            LoadCardCommand = new MvxCommand(() => LoadCardTask = MvxNotifyTask.Create(() => LoadCardAsync()));
             LoadGravatarCommand = new MvxCommand(() => GravatarTask = MvxNotifyTask.Create(() => LoadGravatarAsync()));
         }
 
@@ -41,6 +42,8 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// Command para carregar o Gravatar do Cartão.
         /// </summary>
         public IMvxCommand LoadGravatarCommand { get; private set; }
+
+        public IMvxCommand LoadCardCommand { get; private set; }
 
         private BizCardContent _bizCard;
 
@@ -75,6 +78,17 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _gravatarTask, value); }
         }
 
+        private MvxNotifyTask _loadCardTask;
+
+        /// <summary>
+        /// Task para acompanhamento do processo de carga do Cartão.
+        /// </summary>
+        public MvxNotifyTask LoadCardTask
+        {
+            get { return _loadCardTask; }
+            set { SetProperty(ref _loadCardTask, value); }
+        }
+
         /// <summary>
         /// Inicializa a ViewModel.
         /// </summary>
@@ -82,7 +96,16 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         {
             await base.Initialize();
 
-            BizCard = await BizCardService.GetMyCardAsync();    // TODO: Separar para uma MvxNotifyTask, para melhor performance
+            LoadCardCommand.Execute();            
+        }
+
+        /// <summary>
+        /// Busca o cartão no Cache.
+        /// </summary>
+        /// <param name="ct">Token para controle de cancelamento</param>
+        private async Task LoadCardAsync(CancellationToken ct = default)
+        {
+            BizCard = await BizCardService.GetMyCardAsync(ct);
 
             LoadGravatarCommand.Execute();
         }

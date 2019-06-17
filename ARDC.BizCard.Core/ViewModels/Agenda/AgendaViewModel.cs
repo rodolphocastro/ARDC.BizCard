@@ -8,6 +8,7 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ARDC.BizCard.Core.ViewModels.Agenda
@@ -33,6 +34,7 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
             AddCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<QrCodeScannerViewModel>());
             DeleteCardCommand = new MvxCommand<BizCardContent>((b) => DeleteCardTask = MvxNotifyTask.Create(() => DeleteCardAsync(b)));
             DetailCardCommand = new MvxCommand<BizCardContent>((b) => DetailCardTask = MvxNotifyTask.Create(() => NavigateToCardDetails(b)));
+            LoadAgendaCommand = new MvxCommand(() => LoadAgendaTask = MvxNotifyTask.Create(() => LoadAgendaAsync()));
         }
 
         /// <summary>
@@ -78,6 +80,17 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
             set { SetProperty(ref _deleteCardTask, value); }
         }
 
+        private MvxNotifyTask _loadAgendaTask;
+
+        /// <summary>
+        /// Task para acompanhamento do processo de "Carga" da Agenda.
+        /// </summary>
+        public MvxNotifyTask LoadAgendaTask
+        {
+            get { return _loadAgendaTask; }
+            set { SetProperty(ref _loadAgendaTask, value); }
+        }
+
         /// <summary>
         /// Command para "Adicionar" um Cartão.
         /// </summary>
@@ -94,15 +107,18 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
         public IMvxCommand<BizCardContent> DeleteCardCommand { get; private set; }
 
         /// <summary>
+        /// Command para carregar a Agenda.
+        /// </summary>
+        public IMvxCommand LoadAgendaCommand { get; private set; }
+
+        /// <summary>
         /// Inicializa a ViewModel.
         /// </summary>
         public override async Task Initialize()
         {
-            BizCards.Clear();
-
             await base.Initialize();
 
-            BizCards.AddRange(await BizCardAgendaService.GetCardsAsync());  // TODO: Separar para uma MvxNotifyTask, para melhor performance.
+            LoadAgendaCommand.Execute();
         }
 
         /// <summary>
@@ -112,6 +128,12 @@ namespace ARDC.BizCard.Core.ViewModels.Agenda
         private async Task NavigateToCardDetails(BizCardContent bizcard)
         {
             await NavigationService.Navigate<ViewCardViewModel, BizCardContent>(bizcard);
+        }
+
+        private async Task LoadAgendaAsync(CancellationToken ct = default)
+        {
+            var cacheCards = await BizCardAgendaService.GetCardsAsync(ct);
+            BizCards.SwitchTo(cacheCards);
         }
 
         /// <summary>

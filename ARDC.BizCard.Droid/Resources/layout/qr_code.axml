@@ -39,13 +39,28 @@
         android:textStyle="bold"
         app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
 
-    <!-- QR Code-->
-    <ImageView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:layout_gravity="center"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-        app:MvxBind="Bitmap ByteArrayToImage(QrBytes); Visibility Visibility(HasQrData)"/>
+        android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/bizcard_gravatar_progress" 
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:MvxBind="Visibility Visibility(CreateQrCodeTask.IsNotCompleted)"
+            tools:visibility="gone"/>
+
+        <!-- QR Code-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            app:MvxBind="Bitmap ByteArrayToImage(QrBytes); Visibility Visibility(CreateQrCodeTask.IsCompleted)"/>
+
+    </FrameLayout>
+    
 </LinearLayout>

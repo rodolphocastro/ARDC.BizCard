@@ -46,7 +46,7 @@ namespace ARDC.BizCard.Core.Services
         {
             await InitializeMyCardAsync();
 
-            return MyBizCard ?? new BizCardContent();
+            return new BizCardContent(MyBizCard) ?? new BizCardContent();
         }
 
         public async Task<string> GetMyCardAsJSONAsync(CancellationToken ct)

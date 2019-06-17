@@ -10,214 +10,237 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-                
-        <RelativeLayout
+              
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp">
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/layout_loading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-                android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:padding="10dp">
-
-                <!-- Indicadores de Carregando -->
-                <ProgressBar
-                    android:id="@+id/my_progressBar"  
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:indeterminate="true"
-                    app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="@string/view_loading"
-                    app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/view_welcome"
-                    android:textStyle="bold"
-                    app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
-
-            </LinearLayout>
-
-            <!-- Avatar -->
-            <FrameLayout
-                android:id="@+id/bizcard_frame_gravatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:layout_below="@id/layout_loading"
-                android:layout_alignParentLeft="true">
-                
-                <ProgressBar
-                    android:id="@+id/bizcard_gravatar_progress" 
+            <ProgressBar
+                    android:id="@+id/bizcard_progress" 
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:indeterminate="true"
-                    app:MvxBind="Visibility Visibility(GravatarTask.IsNotCompleted)"
-                    tools:visibility="visible"/>
+                    app:MvxBind="Visibility Visibility(LoadCardTask.IsNotCompleted)"
+                    tools:visibility="gone"/>
 
-                <ImageView
-                    android:id="@+id/bizcard_gravatar"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                app:MvxBind="Visibility Visibility(LoadCardTask.IsCompleted)">
+
+                <LinearLayout
+                    android:id="@+id/layout_loading"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes)"/>
+                    android:layout_height="wrap_content" 
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:padding="10dp">
 
-            </FrameLayout>
+                    <!-- Indicadores de Carregando -->
+                    <ProgressBar
+                        android:id="@+id/my_progressBar"  
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:indeterminate="true"
+                        app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
-            <!-- Nome -->
-            <TextView
-                android:id="@+id/bizcard_nome_completo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/bizcard_frame_gravatar"
-                android:layout_alignTop="@id/bizcard_frame_gravatar"
-                android:text="Cobaiason Josefino da Silva"          
-                android:textStyle="bold"
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/account"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.NomeCompleto"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/view_loading"
+                        app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
-            <!-- Cargo -->
-            <TextView
-                android:id="@+id/bizcard_cargo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-                android:layout_toRightOf="@id/bizcard_frame_gravatar"
-                android:layout_below="@id/bizcard_nome_completo"
-                android:layout_marginTop="5dp"
-                android:text="Lorem Ipsum"
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/briefcase"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.Cargo"/> 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/view_welcome"
+                        android:textStyle="bold"
+                        app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
 
-            <!-- Empresa -->
-            <TextView
-                android:id="@+id/bizcard_empresa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/bizcard_frame_gravatar"
-                android:layout_below="@id/bizcard_cargo"
-                android:layout_marginTop="5dp"
-                android:text="Aleatoria S.A."
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/domain"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.Empresa"/>
+                </LinearLayout>
 
-            <!-- EMail -->
-            <TextView
-                android:id="@+id/bizcard_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-                android:layout_toRightOf="@id/bizcard_frame_gravatar"
-                android:layout_below="@id/bizcard_empresa"
-                android:layout_marginTop="5dp"
-                android:text="lorem.ipsum@dolor.sit"
-                android:textStyle="italic"
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/at"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.Email"/>
+                <!-- Avatar -->
+                <FrameLayout
+                    android:id="@+id/bizcard_frame_gravatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/layout_loading"
+                    android:layout_alignParentLeft="true">
+                
+                    <ProgressBar
+                        android:id="@+id/bizcard_gravatar_progress" 
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:indeterminate="true"
+                        app:MvxBind="Visibility Visibility(GravatarTask.IsNotCompleted)"
+                        tools:visibility="visible"/>
 
-            <!-- Endereco  -->
-            <TextView
-                android:id="@+id/bizcard_endereco"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"                 
-                android:layout_below="@id/bizcard_frame_gravatar"
-                android:layout_marginTop="5dp"
-                android:text="R. Teste 123, Testera, SP, Brasil"
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/map_marker"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.Endereco"/>   
+                    <ImageView
+                        android:id="@+id/bizcard_gravatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes)"/>
 
-            <!-- Telefone Principal -->
-            <TextView
-                android:id="@+id/bizcard_telefone_principal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:layout_below="@id/bizcard_endereco"
-                android:layout_marginTop="5dp"
-                android:text="(41) 9-1234-4321"
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/phone"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.TelefonePrincipal"/>
+                </FrameLayout>
+
+                <!-- Nome -->
+                <TextView
+                    android:id="@+id/bizcard_nome_completo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/bizcard_frame_gravatar"
+                    android:layout_alignTop="@id/bizcard_frame_gravatar"
+                    android:text="Cobaiason Josefino da Silva"          
+                    android:textStyle="bold"
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/account"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.NomeCompleto"/>
+
+                <!-- Cargo -->
+                <TextView
+                    android:id="@+id/bizcard_cargo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:layout_toRightOf="@id/bizcard_frame_gravatar"
+                    android:layout_below="@id/bizcard_nome_completo"
+                    android:layout_marginTop="5dp"
+                    android:text="Lorem Ipsum"
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/briefcase"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.Cargo"/> 
+
+                <!-- Empresa -->
+                <TextView
+                    android:id="@+id/bizcard_empresa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/bizcard_frame_gravatar"
+                    android:layout_below="@id/bizcard_cargo"
+                    android:layout_marginTop="5dp"
+                    android:text="Aleatoria S.A."
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/domain"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.Empresa"/>
+
+                <!-- EMail -->
+                <TextView
+                    android:id="@+id/bizcard_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:layout_toRightOf="@id/bizcard_frame_gravatar"
+                    android:layout_below="@id/bizcard_empresa"
+                    android:layout_marginTop="5dp"
+                    android:text="lorem.ipsum@dolor.sit"
+                    android:textStyle="italic"
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/at"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.Email"/>
+
+                <!-- Endereco  -->
+                <TextView
+                    android:id="@+id/bizcard_endereco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"                 
+                    android:layout_below="@id/bizcard_frame_gravatar"
+                    android:layout_marginTop="5dp"
+                    android:text="R. Teste 123, Testera, SP, Brasil"
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/map_marker"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.Endereco"/>   
+
+                <!-- Telefone Principal -->
+                <TextView
+                    android:id="@+id/bizcard_telefone_principal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:layout_below="@id/bizcard_endereco"
+                    android:layout_marginTop="5dp"
+                    android:text="(41) 9-1234-4321"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/phone"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.TelefonePrincipal"/>
         
-            <!-- Telefone Secundario -->
-            <TextView
-                android:id="@+id/bizcard_telefone_secundario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:layout_below="@id/bizcard_endereco"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:text="(41) 3212-2123"
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/phone"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.TelefoneSecundario"/>
+                <!-- Telefone Secundario -->
+                <TextView
+                    android:id="@+id/bizcard_telefone_secundario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:layout_below="@id/bizcard_endereco"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:text="(41) 3212-2123"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/phone"
+                    android:drawablePadding="5sp"                
+                    app:MvxBind="Text BizCard.TelefoneSecundario"/>
 
-            <!-- Website -->
-            <TextView
-                android:id="@+id/bizcard_website"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-                android:layout_below="@id/bizcard_telefone_principal"
-                android:layout_marginTop="5dp"
-                android:text="https://google.com"
-                android:gravity="start|center_vertical"
-                android:drawableLeft="@drawable/link"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.Website"/>
+                <!-- Website -->
+                <TextView
+                    android:id="@+id/bizcard_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:layout_below="@id/bizcard_telefone_principal"
+                    android:layout_marginTop="5dp"
+                    android:text="https://google.com"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:drawableLeft="@drawable/link"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.Website"/>
 
-            <!-- LinkedIn -->
-            <TextView
-                android:id="@+id/bizcard_linkedin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:layout_below="@id/bizcard_website"
-                android:layout_marginTop="5dp"
-                android:text="lorem.ipsum.123"
-                android:gravity="center_vertical"
-                android:drawableLeft="@drawable/linkedin_box"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.LinkedIn"/> 
+                <!-- LinkedIn -->
+                <TextView
+                    android:id="@+id/bizcard_linkedin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:layout_below="@id/bizcard_website"
+                    android:layout_marginTop="5dp"
+                    android:text="lorem.ipsum.123"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@drawable/linkedin_box"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.LinkedIn"/> 
 
-            <!-- Whatsapp -->
-            <TextView
-                android:id="@+id/bizcard_whatsapp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/bizcard_website"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:text="5541912344321"
-                android:gravity="center_vertical"
-                android:drawableLeft="@drawable/whatsapp"
-                android:drawablePadding="5sp"
-                app:MvxBind="Text BizCard.Whatsapp"/>            
+                <!-- Whatsapp -->
+                <TextView
+                    android:id="@+id/bizcard_whatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bizcard_website"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:text="5541912344321"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@drawable/whatsapp"
+                    android:drawablePadding="5sp"
+                    app:MvxBind="Text BizCard.Whatsapp"/>            
 
-        </RelativeLayout>
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        
         
     </ScrollView>
 
