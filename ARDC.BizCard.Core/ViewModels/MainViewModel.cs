@@ -23,9 +23,6 @@ namespace ARDC.BizCard.Core.ViewModels
             NavigateToMyCardCommand = new MvxCommand(() => NavigationTask = MvxNotifyTask.Create(() => NavigationService.Navigate<ViewMyCardViewModel>()), () => CanNavigate());
             NavigateToQrCommand = new MvxCommand(() => NavigationTask = MvxNotifyTask.Create(() => NavigationService.Navigate<QrCodeViewModel>()), () => CanNavigate());
             NavigateToAgendaCommand = new MvxCommand(() => NavigationTask = MvxNotifyTask.Create(() => NavigationService.Navigate<AgendaViewModel>()), () => CanNavigate());
-            //NavigateToMyCardCommand = new MvxCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
-            //NavigateToQrCommand = new MvxCommand(async () => await NavigationService.Navigate<QrCodeViewModel>());
-            //NavigateToAgendaCommand = new MvxCommand(async () => await NavigationService.Navigate<AgendaViewModel>());
         }
 
         private MvxNotifyTask<bool> _navigationTask;
