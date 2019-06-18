@@ -29,7 +29,6 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             BizCardService = bizCardService;
             UserDialogsService = userDialogsService;
 
-            NavigateToViewMyCardCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ViewMyCardViewModel>());
             LoadCardCommand = new MvxCommand(() => LoadCardTask = MvxNotifyTask.Create(() => LoadCardAsync()));
             SaveChangesCommand = new MvxCommand(() => SaveChangesTask = MvxNotifyTask.Create(() => SaveChangesAsync()));
         }
@@ -78,11 +77,6 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         }
 
         /// <summary>
-        /// Command para navegar à ViewModel de "Visualizar meu Cartão".
-        /// </summary>
-        public IMvxAsyncCommand NavigateToViewMyCardCommand { get; private set; }
-
-        /// <summary>
         /// Command para salvar alterações ao Cartão.
         /// </summary>
         public IMvxCommand SaveChangesCommand { get; private set; }
@@ -116,7 +110,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
 
                 UserDialogsService.Toast("Alterações Salvas");
 
-                await NavigateToViewMyCardCommand.ExecuteAsync();
+                await NavigationService.Navigate<ViewMyCardViewModel>();
             }
             else
             {
