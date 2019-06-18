@@ -16,13 +16,13 @@
             android:layout_height="match_parent">
 
             <ProgressBar
-                    android:id="@+id/bizcard_progress" 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:indeterminate="true"
-                    app:MvxBind="Visibility Visibility(LoadCardTask.IsNotCompleted)"
-                    tools:visibility="gone"/>
+                android:id="@+id/bizcard_progress" 
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                app:MvxBind="Visibility Visibility(LoadCardTask.IsNotCompleted)"
+                tools:visibility="gone"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -61,9 +61,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/view_welcome"
-                        android:textStyle="bold"
-                        app:MvxBind="Visibility Visibility(InitializeTask.IsCompleted)"/>
+                        android:text="@string/view_welcome"                        
+                        android:drawableLeft="@drawable/message"
+                        android:drawablePadding="5sp"
+                        app:MvxBind="Text BizCard.Mensagem; Visibility Visibility(InitializeTask.IsCompleted)"/>
 
                 </LinearLayout>
 
