@@ -40,12 +40,22 @@ namespace ARDC.BizCard.Droid.Services
 
         public Task LaunchPhoneAsync(string phoneNumber, CancellationToken ct)
         {
-            throw new NotImplementedException();
+            var uri = Android.Net.Uri.Parse($"tel:{phoneNumber}");
+            var intent = new Intent(Intent.ActionDial, uri);
+
+            _appActivity.StartActivity(intent);
+
+            return Task.CompletedTask;
         }
 
         public Task LaunchWebBrowserAsync(string url, CancellationToken ct)
         {
-            throw new NotImplementedException();
+            var uri = Android.Net.Uri.Parse(url);
+            var intent = new Intent(Intent.ActionView, uri);
+
+            _appActivity.StartActivity(intent);
+
+            return Task.CompletedTask;
         }
     }
 }
