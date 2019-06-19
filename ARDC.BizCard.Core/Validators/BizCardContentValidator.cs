@@ -46,6 +46,10 @@ namespace ARDC.BizCard.Core.Validators
             // LinkedIn: Caso informado, deve ser um perfil válido
             RuleFor(c => c.LinkedIn)
                 .Matches(@"[A-z0-9_-]+").Unless(c => string.IsNullOrWhiteSpace(c.LinkedIn));
+
+            // Mensagem: Caso informada, deve ser menor que 255 Caractéres
+            RuleFor(c => c.Mensagem)
+                .MaximumLength(255).Unless(c => string.IsNullOrWhiteSpace(c.Mensagem));
         }
     }
 }

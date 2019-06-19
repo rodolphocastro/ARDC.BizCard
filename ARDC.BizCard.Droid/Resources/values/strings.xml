@@ -24,6 +24,7 @@
   <string name="label_empresa">Empresa</string>
   <string name="label_cargo">Cargo</string>
   <string name="label_endereco">Endereço</string>
+  <string name="label_mensagem">Mensagem</string>
   <!-- Elementos do Landing -->
   <string name="landing_message">Bem vindo ao App! Escolha uma opção no menu superior!</string>
   <!-- Elementos da Edição -->

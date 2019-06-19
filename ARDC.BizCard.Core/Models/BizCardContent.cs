@@ -29,6 +29,7 @@ namespace ARDC.BizCard.Core.Models
             Empresa = bizCard.Empresa;
             Cargo = bizCard.Cargo;
             Endereco = bizCard.Endereco;
+            Mensagem = bizCard.Mensagem;
         }
 
         /// <summary>
@@ -82,6 +83,11 @@ namespace ARDC.BizCard.Core.Models
         public string Endereco { get; set; }
 
         /// <summary>
+        /// Mensagem a ser contida no Cartão.
+        /// </summary>
+        public string Mensagem { get; set; }
+
+        /// <summary>
         /// Indica se o cartão possui algum dado preenchido.
         /// </summary>
         /// <returns>TRUE caso o cartão possua algum dado preenchido, FALSE caso contrário</returns>
@@ -97,7 +103,8 @@ namespace ARDC.BizCard.Core.Models
                 !string.IsNullOrWhiteSpace(Website) ||
                 !string.IsNullOrWhiteSpace(Empresa) ||
                 !string.IsNullOrWhiteSpace(Cargo) ||
-                !string.IsNullOrWhiteSpace(Endereco)
+                !string.IsNullOrWhiteSpace(Endereco) ||
+                !string.IsNullOrWhiteSpace(Mensagem)
             );
         }
 
