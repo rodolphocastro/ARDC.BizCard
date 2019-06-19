@@ -24,13 +24,17 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// <param name="navigationService">Provedor de navegação a ser utilizado</param>
         /// <param name="bizCardAgendaService">Provedor de CardAgenda a ser utilizado</param>
         /// <param name="userDialogsService">Provedor de Dialogs a ser utilizado</param>
-        public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardAgendaService bizCardAgendaService, IUserDialogs userDialogsService) : base(logProvider, navigationService)
+        /// <param name="launcherService">Provedor de inicialização de outros Apps</param>
+        public ViewCardViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IBizCardAgendaService bizCardAgendaService, IUserDialogs userDialogsService, IAppLauncherService launcherService) : base(logProvider, navigationService)
         {
             BizCardAgendaService = bizCardAgendaService ?? throw new ArgumentNullException(nameof(bizCardAgendaService));
             UserDialogsService = userDialogsService ?? throw new ArgumentNullException(nameof(userDialogsService));
+            LauncherService = launcherService ?? throw new ArgumentNullException(nameof(launcherService));
 
             AddCardToAgendaCommand = new MvxCommand(() => AddCardTask = MvxNotifyTask.Create(() => AddCardAsync()));
             LoadGravatarCommand = new MvxCommand(() => GravatarTask = MvxNotifyTask.Create(() => LoadGravatarAsync()));
+
+            OpenLinkedInCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchLinkedInAsync(BizCard.LinkedIn)), () => CanOpenNewApp());
         }
 
         /// <summary>
@@ -42,6 +46,11 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// Provedor de Dialogs.
         /// </summary>
         private IUserDialogs UserDialogsService { get; }
+
+        /// <summary>
+        /// Provedor de iniciar outros Apps.
+        /// </summary>
+        private IAppLauncherService LauncherService { get; }
 
         private BizCardContent _bizCard;
 
@@ -76,6 +85,17 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             set { SetProperty(ref _gravatarTask, value); }
         }
 
+        private MvxNotifyTask _socialAppsTask;
+
+        /// <summary>
+        /// Task para acompanhamento do processo de abrir outros Apps.
+        /// </summary>
+        public MvxNotifyTask SocialAppsTask
+        {
+            get { return _socialAppsTask; }
+            set { SetProperty(ref _socialAppsTask, value); }
+        }
+
         private byte[] _gravatarBytes;
 
         /// <summary>
@@ -96,6 +116,11 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// Command para carregar o Gravatar do Cartão.
         /// </summary>
         public IMvxCommand LoadGravatarCommand { get; private set; }
+
+        /// <summary>
+        /// Command para abrir o LinkedIn do Cartão.
+        /// </summary>
+        public IMvxCommand OpenLinkedInCommand { get; private set; }
 
         /// <summary>
         /// Prepara a ViewModel para exibição.
@@ -146,5 +171,12 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             if (!string.IsNullOrWhiteSpace(BizCard.Email))
                 GravatarBytes = await BizCardAgendaService.GetGravatarAsync(BizCard);
         }
+
+        /// <summary>
+        /// Verifica se um novo App pode ser iniciado.
+        /// </summary>
+        /// <returns>TRUE caso a Task esteja concluída ou não esteja iniciada</returns>
+        private bool CanOpenNewApp() => SocialAppsTask == null || SocialAppsTask.IsCompleted;
+
     }
 }
