@@ -5,6 +5,8 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using ARDC.BizCard.Core;
+using ARDC.BizCard.Core.Services;
+using ARDC.BizCard.Droid.Services;
 using MvvmCross;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
@@ -30,6 +32,7 @@ namespace ARDC.BizCard.Droid
         {
             base.InitializeApp(pluginManager, app);
             UserDialogs.Init(() => Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
+            Mvx.IoCProvider.RegisterSingleton<IAppLauncherService>(new AppLauncherService());
         }
 
         /// <summary>
