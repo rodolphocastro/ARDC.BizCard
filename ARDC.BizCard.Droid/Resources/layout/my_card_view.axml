@@ -58,6 +58,7 @@
                         app:MvxBind="Visibility Visibility(InitializeTask.IsNotCompleted)"/>
 
                     <TextView
+                        android:id="@+id/bizcard_mensagem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
