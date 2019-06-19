@@ -43,6 +43,18 @@
                     android:text="@string/view_loading"/>
 
             </LinearLayout>
+            
+            <TextView
+                android:id="@+id/bizcard_mensagem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Lorem ipsum dolor sit amet"                        
+                android:drawableLeft="@drawable/message"
+                android:drawablePadding="5sp"
+                app:MvxBind="Text BizCard.Mensagem"/>
 
             <!-- Avatar -->
             <FrameLayout
@@ -50,8 +62,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true">
+                android:layout_below="@id/bizcard_mensagem">
                 
                 <ProgressBar
                     android:id="@+id/bizcard_gravatar_progress" 
@@ -70,7 +81,7 @@
                     app:MvxBind="Bitmap ByteArrayToImage(GravatarBytes)"/>
 
             </FrameLayout>
-
+            
             <!-- Nome -->
             <TextView
                 android:id="@+id/bizcard_nome_completo"
