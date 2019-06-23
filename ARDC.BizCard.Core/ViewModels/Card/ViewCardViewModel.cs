@@ -35,6 +35,8 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             LoadGravatarCommand = new MvxCommand(() => GravatarTask = MvxNotifyTask.Create(() => LoadGravatarAsync()));
 
             OpenLinkedInCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchLinkedInAsync(BizCard.LinkedIn)), () => CanOpenNewApp());
+            OpenPrimaryPhoneCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchPhoneAsync(BizCard.TelefonePrincipal)), () => CanOpenNewApp());
+            OpenSecondaryPhoneCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchPhoneAsync(BizCard.TelefoneSecundario)), () => CanOpenNewApp());
         }
 
         /// <summary>
@@ -121,6 +123,16 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// Command para abrir o LinkedIn do Cartão.
         /// </summary>
         public IMvxCommand OpenLinkedInCommand { get; private set; }
+
+        /// <summary>
+        /// Command para abrir o Telefone Primário do Cartão.
+        /// </summary>
+        public IMvxCommand OpenPrimaryPhoneCommand { get; private set; }
+
+        /// <summary>
+        /// Command para abrir o Telefone Secundário do Cartão.
+        /// </summary>
+        public IMvxCommand OpenSecondaryPhoneCommand { get; private set; }
 
         /// <summary>
         /// Prepara a ViewModel para exibição.
