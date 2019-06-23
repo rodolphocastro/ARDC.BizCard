@@ -37,6 +37,7 @@ namespace ARDC.BizCard.Core.ViewModels.Card
             OpenLinkedInCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchLinkedInAsync(BizCard.LinkedIn)), () => CanOpenNewApp());
             OpenPrimaryPhoneCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchPhoneAsync(BizCard.TelefonePrincipal)), () => CanOpenNewApp());
             OpenSecondaryPhoneCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchPhoneAsync(BizCard.TelefoneSecundario)), () => CanOpenNewApp());
+            OpenWebsiteCommand = new MvxCommand(() => SocialAppsTask = MvxNotifyTask.Create(() => LauncherService.LaunchWebBrowserAsync(BizCard.Website)), () => CanOpenNewApp());
         }
 
         /// <summary>
@@ -133,6 +134,11 @@ namespace ARDC.BizCard.Core.ViewModels.Card
         /// Command para abrir o Telefone Secundário do Cartão.
         /// </summary>
         public IMvxCommand OpenSecondaryPhoneCommand { get; private set; }
+
+        /// <summary>
+        /// Command para abrir o Website do Cartão.
+        /// </summary>
+        public IMvxCommand OpenWebsiteCommand { get; private set; }
 
         /// <summary>
         /// Prepara a ViewModel para exibição.
