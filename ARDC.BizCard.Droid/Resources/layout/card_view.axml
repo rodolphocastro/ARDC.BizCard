@@ -228,6 +228,69 @@
         
     </ScrollView>
 
+    <!-- FABs de Ações -->
+    <LinearLayout
+        android:id="@+id/layout_fabs_menu"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/fab"                
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_linkedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_margin="@dimen/fab_margin"   
+            app:fabCustomSize="30dp"
+            android:src="@drawable/linkedin_box"            
+            app:backgroundTint="@android:color/holo_blue_light"
+            app:MvxBind="Click OpenLinkedInCommand"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_mainPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_margin="@dimen/fab_margin"   
+            app:fabCustomSize="30dp"
+            android:src="@drawable/phone"            
+            app:backgroundTint="@android:color/holo_green_light"
+            app:MvxBind="Click OpenPrimaryPhoneCommand"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_secondPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_margin="@dimen/fab_margin"   
+            app:fabCustomSize="30dp"
+            android:src="@drawable/phone"            
+            app:backgroundTint="@android:color/holo_green_dark"
+            app:MvxBind="Click OpenSecondaryPhoneCommand"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_margin="@dimen/fab_margin"   
+            app:fabCustomSize="30dp"
+            android:src="@drawable/link"            
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:MvxBind="Click OpenWebsiteCommand"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_margin="@dimen/fab_margin"   
+            app:fabCustomSize="30dp"
+            android:src="@drawable/at"            
+            app:backgroundTint="@android:color/holo_orange_dark"
+            app:MvxBind="Click OpenEmailCommand"/>
+    </LinearLayout>
+
+    <!-- Toggle para Ações -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -237,6 +300,6 @@
         android:layout_margin="@dimen/fab_margin"        
         android:src="@drawable/plus"
         app:backgroundTint="@android:color/holo_green_dark"
-        app:MvxBind="Click AddCardToAgendaCommand"/>
+        app:MvxBind="Click AddCardToAgendaCommand"/>    
 
 </RelativeLayout>
