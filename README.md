@@ -26,6 +26,7 @@ Garanta também que o path da `ANDROID_HOME` possua **apenas uma pasta de** `plat
 + https://bitbar.com/blog/setting-up-xamarin-uitest-framework-for-mobile-app-testing/
 + https://github.com/microsoft/appcenter-Xamarin.UITest-Demo/blob/master/UITestDemo.UITest/AppInitializer.cs#L13
 + https://www.c-sharpcorner.com/article/xamarin-ui-test/
++ https://forums.xamarin.com/discussion/27438/xamarin-ui-test-android-timed-out
 
 ## Git Flow
 

@@ -25,10 +25,10 @@ namespace ARDC.BizCard.Tests.Ui
         }
 
         [Test]
-        public void WelcomeTextIsDisplayed()
+        public void LandingPage_Has_FloatingActionButton()
         {
-            AppResult[] results = app.WaitForElement(c => c.Marked("Welcome to Xamarin.Forms!"));
-            app.Screenshot("Welcome screen.");
+            AppResult[] results = app.WaitForElement(c => c.Marked("fab"));            
+            app.Screenshot("Landing Page has Floating Action Button");
 
             Assert.IsTrue(results.Any());
         }
